@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace php-ipp\
+namespace InternetPrintingProtocol\Exception;
 
 class IppException extends \Exception
 {
     protected $errorNumber;
 
-    public function __construct($msg, $errorNumber = null)
+    public function __construct($errorMessage, $errorNumber = null)
     {
-        parent::__construct($msg);
+        parent::__construct($errorMessage);
 
         $this->errorNumber = $errorNumber;
     }
@@ -19,6 +19,7 @@ class IppException extends \Exception
     {
         $return = sprintf('[ipp]: %s -- ' . _(' file %s, line %s'),
             $this->getMessage(), $this->getFile(), $this->getLine());
+
         return $return;
     }
 

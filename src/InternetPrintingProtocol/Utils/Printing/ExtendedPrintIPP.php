@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace InternetPrintingProtocol\Utils\Printing;
 
@@ -40,12 +40,12 @@ class ExtendedPrintIPP extends PrintIPP
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf('printing uri %s, job %s: ', $uri, $this->last_job)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->jobs = array_merge($this->jobs, ['']);
                 $this->jobs_uri = array_merge($this->jobs_uri, ['']);
                 $this->_errorLog(sprintf('printing uri %s: ', $uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -151,26 +151,26 @@ class ExtendedPrintIPP extends PrintIPP
             $this->error_generation->request_body_malformed = '';
         }
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x03) // Print-URI | operation-id
-            .$this->meta->operation_id //           request-id
-            .$this->error_generation->request_body_malformed
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->printer_uri
-            .$this->meta->jobname
-            .$this->meta->username
-            .$this->meta->fidelity
-            .$this->meta->document_name
-            .$this->meta->document_uri
-            .$operationattributes
-            .\chr(0x02) // start job-attributes | job-attributes-tag
-            .$this->meta->copies
-            .$this->meta->sides
-            .$this->meta->page_ranges
-            .$jobattributes
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x03) // Print-URI | operation-id
+            . $this->meta->operation_id //           request-id
+            . $this->error_generation->request_body_malformed
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->printer_uri
+            . $this->meta->jobname
+            . $this->meta->username
+            . $this->meta->fidelity
+            . $this->meta->document_name
+            . $this->meta->document_uri
+            . $operationattributes
+            . \chr(0x02) // start job-attributes | job-attributes-tag
+            . $this->meta->copies
+            . $this->meta->sides
+            . $this->meta->page_ranges
+            . $jobattributes
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -180,12 +180,12 @@ class ExtendedPrintIPP extends PrintIPP
     protected function _setDocumentUri()
     {
         $this->meta->document_uri = \chr(0x45) // type uri
-            .\chr(0x00).\chr(0x0c) // name-length
-            .'document-uri'
-            .$this->_giveMeStringLength($this->document_uri)
-            .$this->document_uri;
+            . \chr(0x00) . \chr(0x0c) // name-length
+            . 'document-uri'
+            . $this->_giveMeStringLength($this->document_uri)
+            . $this->document_uri;
 
-        $this->_putDebug('document uri is: '.$this->document_uri."\n");
+        $this->_putDebug('document uri is: ' . $this->document_uri . "\n");
         $this->setup->document_uri = 1;
     }
 
@@ -225,20 +225,20 @@ class ExtendedPrintIPP extends PrintIPP
             $this->setUserName();
         }
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x12) // purge-Jobs | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->printer_uri
-            .$this->meta->username
-            .\chr(0x22)
-            .$this->_giveMeStringLength('purge-jobs')
-            .'purge-jobs'
-            .$this->_giveMeStringLength(\chr(0x01))
-            .\chr(0x01)
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x12) // purge-Jobs | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->printer_uri
+            . $this->meta->username
+            . \chr(0x22)
+            . $this->_giveMeStringLength('purge-jobs')
+            . 'purge-jobs'
+            . $this->_giveMeStringLength(\chr(0x01))
+            . \chr(0x01)
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -261,10 +261,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('purging jobs of %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('purging jobs of %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -272,8 +272,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('purging jobs of %s : OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('purging jobs of %s : OPERATION FAILED'),
                 $this->printer_uri), 3);
 
         return false;
@@ -344,34 +344,34 @@ class ExtendedPrintIPP extends PrintIPP
         $timeout = $this->_integerBuild($this->timeout);
 
         $this->meta->timeout = \chr(0x21) // integer
-            .$this->_giveMeStringLength('multiple-operation-time-out')
-            .'multiple-operation-time-out'
-            .$this->_giveMeStringLength($timeout)
-            .$timeout;
+            . $this->_giveMeStringLength('multiple-operation-time-out')
+            . 'multiple-operation-time-out'
+            . $this->_giveMeStringLength($timeout)
+            . $timeout;
 
         $jobattributes = '';
         $operationattributes = '';
         $printerattributes = '';
         $this->_buildValues($operationattributes, $jobattributes, $printerattributes);
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x05) // Create-Job | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->printer_uri
-            .$this->meta->username
-            .$this->meta->jobname
-            .$this->meta->fidelity
-            .$this->meta->timeout
-            .$operationattributes
-            .\chr(0x02) // start job-attributes | job-attributes-tag
-            .$this->meta->copies
-            .$this->meta->sides
-            .$this->meta->page_ranges
-            .$jobattributes
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x05) // Create-Job | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->printer_uri
+            . $this->meta->username
+            . $this->meta->jobname
+            . $this->meta->fidelity
+            . $this->meta->timeout
+            . $operationattributes
+            . \chr(0x02) // start job-attributes | job-attributes-tag
+            . $this->meta->copies
+            . $this->meta->sides
+            . $this->meta->page_ranges
+            . $jobattributes
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         unset($this->meta->copies, $this->meta->sides, $this->meta->page_ranges);
 
@@ -402,7 +402,7 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('Create job: job %s'), $this->last_job)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->jobs = array_merge($this->jobs, ['']);
                 $this->jobs_uri = array_merge($this->jobs_uri, ['']);
@@ -414,8 +414,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('Creating job on %s : OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('Creating job on %s : OPERATION FAILED'),
                 $this->printer_uri), 3);
 
         $this->jobs = array_merge($this->jobs, ['']);
@@ -567,28 +567,28 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->_setOperationId();
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x06) // Send-Document | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .\chr(0x45) // attribute-type: uri
-            .$this->_giveMeStringLength('job-uri')
-            .'job-uri'
-            .$this->_giveMeStringLength($job)
-            .$job
-            .$this->meta->username
-            .$this->meta->document_name
-            .$this->meta->fidelity
-            .$this->meta->mime_media_type
-            .$operationattributes
-            .\chr(0x22) // boolean
-            .$this->_giveMeStringLength('last-document')
-            .'last-document'
-            .$this->_giveMeStringLength($is_last)
-            .$is_last
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x06) // Send-Document | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . \chr(0x45) // attribute-type: uri
+            . $this->_giveMeStringLength('job-uri')
+            . 'job-uri'
+            . $this->_giveMeStringLength($job)
+            . $job
+            . $this->meta->username
+            . $this->meta->document_name
+            . $this->meta->fidelity
+            . $this->meta->mime_media_type
+            . $operationattributes
+            . \chr(0x22) // boolean
+            . $this->_giveMeStringLength('last-document')
+            . 'last-document'
+            . $this->_giveMeStringLength($is_last)
+            . $is_last
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -727,28 +727,28 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->_setOperationId();
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x07) // Send-Uri | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .\chr(0x45) // attribute-type: uri
-            .$this->_giveMeStringLength('job-uri')
-            .'job-uri'
-            .$this->_giveMeStringLength($job)
-            .$job
-            .$this->meta->username
-            .$this->meta->document_uri
-            .$this->meta->fidelity
-            .$this->meta->mime_media_type
-            .$operationattributes
-            .\chr(0x22) // boolean
-            .$this->_giveMeStringLength('last-document')
-            .'last-document'
-            .$this->_giveMeStringLength($is_last)
-            .$is_last
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x07) // Send-Uri | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . \chr(0x45) // attribute-type: uri
+            . $this->_giveMeStringLength('job-uri')
+            . 'job-uri'
+            . $this->_giveMeStringLength($job)
+            . $job
+            . $this->meta->username
+            . $this->meta->document_uri
+            . $this->meta->fidelity
+            . $this->meta->mime_media_type
+            . $operationattributes
+            . \chr(0x22) // boolean
+            . $this->_giveMeStringLength('last-document')
+            . 'last-document'
+            . $this->_giveMeStringLength($is_last)
+            . $is_last
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -791,20 +791,20 @@ class ExtendedPrintIPP extends PrintIPP
             $this->setUserName();
         }
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x10) // Pause-Printer | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->printer_uri
-            .$this->meta->username
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x10) // Pause-Printer | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->printer_uri
+            . $this->meta->username
             /* . chr(0x22)
                                      . self::_giveMeStringLength("purge-jobs")
                                      . "purge-jobs"
                                      . self::_giveMeStringLength(chr(0x01))
                                      . chr(0x01) */
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -827,10 +827,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('Pause printer %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('pause printer %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -838,8 +838,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('pause printer %s : OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('pause printer %s : OPERATION FAILED'),
                 $this->printer_uri), 3);
 
         return false;
@@ -881,15 +881,15 @@ class ExtendedPrintIPP extends PrintIPP
             $this->setUserName();
         }
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x11) // suse-Printer | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->printer_uri
-            .$this->meta->username
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x11) // suse-Printer | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->printer_uri
+            . $this->meta->username
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -912,10 +912,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('resume printer %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('resume printer %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -923,8 +923,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('resume printer %s : OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('resume printer %s : OPERATION FAILED'),
                 $this->printer_uri), 3);
 
         return false;
@@ -965,22 +965,22 @@ class ExtendedPrintIPP extends PrintIPP
         }
 
         $this->meta->job_hold_until = \chr(0x42) // keyword
-            .$this->_giveMeStringLength('job-hold-until')
-            .'job-hold-until'
-            .$this->_giveMeStringLength($until)
-            .$until;
+            . $this->_giveMeStringLength('job-hold-until')
+            . 'job-hold-until'
+            . $this->_giveMeStringLength($until)
+            . $until;
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x0C) // Hold-Job | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->username
-            .$this->meta->job_uri
-            .$this->meta->message
-            .$this->meta->job_hold_until
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x0C) // Hold-Job | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->username
+            . $this->meta->job_uri
+            . $this->meta->message
+            . $this->meta->job_hold_until
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1002,10 +1002,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('hold job %s until %s: '), $job_uri, $until)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('hold job %s until %s: '), $job_uri, $until)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1013,8 +1013,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('hold job %s until %s : OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('hold job %s until %s : OPERATION FAILED'),
                 $job_uri, $until), 3);
 
         return false;
@@ -1049,16 +1049,16 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->_setJobUri($job_uri);
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x0D) // Hold-Job | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->job_uri
-            .$this->meta->username
-            .$this->meta->message
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x0D) // Hold-Job | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->job_uri
+            . $this->meta->username
+            . $this->meta->message
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1080,10 +1080,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('release job %s: '), $job_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('release job %s: '), $job_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1091,8 +1091,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('release job %s: OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('release job %s: OPERATION FAILED'),
                 $job_uri), 3);
 
         return false;
@@ -1130,17 +1130,17 @@ class ExtendedPrintIPP extends PrintIPP
         $printerattributes = '';
         $this->_buildValues($operationattributes, $jobattributes, $printerattributes);
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x0E) // Hold-Job | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->job_uri
-            .$this->meta->username
-            .$this->meta->message
-            .$jobattributes // job-hold-until is set by setAttribute($attribute,$value)
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x0E) // Hold-Job | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->job_uri
+            . $this->meta->username
+            . $this->meta->message
+            . $jobattributes // job-hold-until is set by setAttribute($attribute,$value)
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1163,10 +1163,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('release job %s: '), $job_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('release job %s: '), $job_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1174,8 +1174,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('release job %s: OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('release job %s: OPERATION FAILED'),
                 $job_uri), 3);
 
         return false;
@@ -1228,27 +1228,27 @@ class ExtendedPrintIPP extends PrintIPP
         $this->meta->deleted_attributes = '';
         foreach ($deleted_attributes as $i => $iValue) {
             $this->meta->deleted_attributes .= \chr(0x16) // out-of-band value
-                .$this->_giveMeStringLength($deleted_attributes[$i])
-                .$iValue
-                .\chr(0x0).\chr(0x0);
+                . $this->_giveMeStringLength($deleted_attributes[$i])
+                . $iValue
+                . \chr(0x0) . \chr(0x0);
         } // value-length = 0;
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x14) // Set-Job-Attributes | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->job_uri
-            .$this->meta->username
-            .$this->meta->message
-            .\chr(0x02) // start job-attributes
-            .$jobattributes // setteds by setAttribute($attribute,$value)
-            .$this->meta->copies
-            .$this->meta->sides
-            .$this->meta->page_ranges
-            .$this->meta->deleted_attributes
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x14) // Set-Job-Attributes | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->job_uri
+            . $this->meta->username
+            . $this->meta->message
+            . \chr(0x02) // start job-attributes
+            . $jobattributes // setteds by setAttribute($attribute,$value)
+            . $this->meta->copies
+            . $this->meta->sides
+            . $this->meta->page_ranges
+            . $this->meta->deleted_attributes
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1270,10 +1270,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('set job attributes for job %s: '), $job_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('set job attributes for job %s: '), $job_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
             $this->last_job = $job_uri;
             $this->jobs_uri[\count($this->jobs_uri) - 1] = $job_uri;
@@ -1283,8 +1283,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('set job attributes for job %s: OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('set job attributes for job %s: OPERATION FAILED'),
                 $job_uri), 3);
 
         return false;
@@ -1353,28 +1353,28 @@ class ExtendedPrintIPP extends PrintIPP
         $this->meta->deleted_attributes = '';
         foreach ($deleted_attributes as $i => $iValue) {
             $this->meta->deleted_attributes .= \chr(0x16) // out-of-band "deleted" value
-                .$this->_giveMeStringLength($deleted_attributes[$i])
-                .$iValue
-                .\chr(0x0).\chr(0x0);
+                . $this->_giveMeStringLength($deleted_attributes[$i])
+                . $iValue
+                . \chr(0x0) . \chr(0x0);
         } // value-length = 0;
 
-        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
-            .\chr(0x00).\chr(0x13) // Set-Printer-Attributes | operation-id
-            .$this->meta->operation_id //           request-id
-            .\chr(0x01) // start operation-attributes | operation-attributes-tag
-            .$this->meta->charset
-            .$this->meta->language
-            .$this->meta->printer_uri
-            .$this->meta->username
-            .$this->meta->message
-            .$operationattributes
-            .\chr(0x02) // start job-attributes
-            .$jobattributes // setteds by setAttribute($attribute,$value)
-            .$this->meta->copies
-            .$this->meta->sides
-            .$this->meta->page_ranges
-            .$this->meta->deleted_attributes
-            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
+            . \chr(0x00) . \chr(0x13) // Set-Printer-Attributes | operation-id
+            . $this->meta->operation_id //           request-id
+            . \chr(0x01) // start operation-attributes | operation-attributes-tag
+            . $this->meta->charset
+            . $this->meta->language
+            . $this->meta->printer_uri
+            . $this->meta->username
+            . $this->meta->message
+            . $operationattributes
+            . \chr(0x02) // start job-attributes
+            . $jobattributes // setteds by setAttribute($attribute,$value)
+            . $this->meta->copies
+            . $this->meta->sides
+            . $this->meta->page_ranges
+            . $this->meta->deleted_attributes
+            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1396,10 +1396,10 @@ class ExtendedPrintIPP extends PrintIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('set printer attributes for printer %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 3);
+                    . $this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('set printer attributes for printer %s: '), $this->printer_uri)
-                    .$this->serveroutput->status, 1);
+                    . $this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1407,8 +1407,8 @@ class ExtendedPrintIPP extends PrintIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            .basename($_SERVER['PHP_SELF'])
-            .sprintf(_('set printer attributes for printer %s: OPERATION FAILED'),
+            . basename($_SERVER['PHP_SELF'])
+            . sprintf(_('set printer attributes for printer %s: OPERATION FAILED'),
                 $this->printer_uri), 1);
 
         return false;

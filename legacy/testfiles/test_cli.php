@@ -5,11 +5,11 @@
  *
  * Copyright(C) 2008 Thomas Harding
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright
@@ -18,7 +18,7 @@
  *     * Neither the name of Thomas Harding nor the names of its
  *       contributors may be used to endorse or promote products derived from
  *       this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
@@ -29,26 +29,23 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   mailto:thomas.harding@laposte.net
  *
  */
 
-
-error_reporting(E_ALL|E_STRICT);
-if (!isset($argv[1]))
-{
-  echo "usage: ",$argv[0], ' "file"|"string"',"\n";
-  exit(1);
+error_reporting(E_ALL | E_STRICT);
+if (!isset($argv[1])) {
+    echo 'usage: ', $argv[0], ' "file"|"string"', "\n";
+    exit(1);
 }
-$user=getenv('USER');
-require_once("printipp/PrintIPP.php");
-$ipp = new PrintIPP();
+$user = getenv('USER');
+$ipp = new \InternetPrintingProtocol\Utils\Printing\PrintIPP();
 $ipp->setUnix();
-$ipp->setPrinterUri("ipp://localhost:631/printers/Parallel_Port_1");
+$ipp->setPrinterURI('ipp://localhost:631/printers/Parallel_Port_1');
 $ipp->setData($argv[1]);
 $ipp->setUserName($user);
-echo "printing job: ", $ipp->printJob(), "\n";
-echo "cancelling job: ", $ipp->cancelJob($ipp->last_job), "\n";
+echo 'printing job: ', $ipp->printJob(), "\n";
+echo 'cancelling job: ', $ipp->cancelJob($ipp->last_job), "\n";
 ?>

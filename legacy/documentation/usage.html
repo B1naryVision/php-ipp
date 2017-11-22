@@ -7,182 +7,154 @@
 <!-- 
 @(#) $Header: /sources/phpprintipp/phpprintipp/documentation/usage.html,v 1.37 2008/08/09 17:47:22 harding Exp $
  -->
-    <head>
+<head>
 
-  
-        <meta name="Author" content="Thomas Harding" />
-        <meta http-equiv="Description" content="phpprintipp documentation" />
-        <meta http-equiv="Keywords" content="documentation,php,IPP,internet printing protocol,lgpl" />
-        <link type="image/png" rel="shortcut icon" href="images/printipp-logo-shicon.png" title="PHP PrintIPP logo" />
-        <link rev="made" href="mailto:thomas.harding@laposte.net" />
-        <style type="text/css">
+    <meta name="Author" content="Thomas Harding"/>
+    <meta http-equiv="Description" content="phpprintipp documentation"/>
+    <meta http-equiv="Keywords" content="documentation,php,IPP,internet printing protocol,lgpl"/>
+    <link type="image/png" rel="shortcut icon" href="images/printipp-logo-shicon.png" title="PHP PrintIPP logo"/>
+    <link rev="made" href="mailto:thomas.harding@laposte.net"/>
+    <style type="text/css">
         /* <![CDATA[ */
-            body
-            {
-              padding-top: 2em ;
-              padding-bottom: 4em ;
-              padding-left: 2em ;
-              padding-right: 4em;
-              background-color: white ;
-              color: black;
-            }
+        body {
 
-            li.menulogo
-            {
-              position: absolute;
-              top: 20px;
-            }
+            padding: 2em 4em 4em 2em;
+            background-color: white;
+            color: black;
+        }
 
-            img.logo
-            {
-              margin-bottom: -0.2ex;
-            }
+        img.logo {
+            margin-bottom: -0.2ex;
+        }
 
-            div.section
-            {
-              padding-left: 5em;
-              counter-increment: chapter;
-              counter-reset: section;
-            }
+        div.section {
+            padding-left: 5em;
+            counter-increment: chapter;
+            counter-reset: section;
+        }
 
-            div.section h2
-            {
-              margin-left: -2em;
-            }
+        div.section h2 {
+            margin-left: -2em;
+        }
 
-            div.subsection
-            {
-              padding-left: 5em;
-              counter-increment: section;
-              counter-reset: subsection;
-            }
+        div.subsection {
+            padding-left: 5em;
+            counter-increment: section;
+            counter-reset: subsection;
+        }
 
-            div.subsubsection
-            {
-              padding-left: 5em;
-              counter-increment: subsection;
-            }
+        div.subsubsection {
+            padding-left: 5em;
+            counter-increment: subsection;
+        }
 
+        div.subsection h3 {
+            margin-left: -4em;
+        }
 
-            div.subsection h3
-            {
-              margin-left: -4em;
-            }
+        div.subsubsection h4 {
+            margin-left: -2em;
+        }
 
-            div.subsubsection h4
-            {
-              margin-left: -2em;
-            }
+        pre.pre {
+            display: block;
+            white-space: pre;
+            font-family: monospace;
+        }
 
-            pre.pre
-            {
-              display: block;
-              white-space: pre;
-              font-family: monospace;
-            }
+        pre.pre span.normal {
+            margin-left: -2em;
+            white-space: normal;
+            font-family: serif;
+        }
 
-            pre.pre span.normal
-            {
-              margin-left: -2em;
-              white-space: normal;
-              font-family: serif;
-            }
+        p.typewriter {
+            display: block;
+            font-family: monospace;
+        }
 
-            p.typewriter
-            {
-              display: block;
-              font-family: monospace;
-            }
+        p.note:before {
+            content: 'Note: ';
+            font-weight: bold;
+            font-size: 80%;
+        }
 
-            p.note:before
-            {
-              content: 'Note: ';
-              font-weight: bold;
-              font-size: 80%;
-            }
+        p.note {
+            font-size: 80%;
+        }
 
-            p.note
-            {
-              font-size: 80%;
-            }
+        span.important {
+            display: block;
+            font-weight: bold;
+            font-size: 80%;
+        }
 
-            span.important
-            {
-              display: block ;
-              font-weight: bold;
-              font-size: 80%;
-            }
+        div.section h2:before {
+            content: counter(chapter) ". ";
+        }
 
-            div.section h2:before
-            {
-              content: counter(chapter) ". ";
-            }
+        div.subsection h3:before {
+            content: counter(chapter) "." counter(section) ". ";
+        }
 
-            div.subsection h3:before
-            {
-              content: counter(chapter) "." counter(section) ". ";
-            }
+        div.subsubsection h4:before {
+            content: counter(chapter) "." counter(section) "." counter(subsection) ". ";
+        }
 
-            div.subsubsection h4:before
-            {
-              content: counter(chapter) "." counter(section) "." counter(subsection) ". ";
-            }
+        div.menu dl {
+            counter-reset: depth;
+        }
 
-            div.menu dl {
-                counter-reset: depth;
-                }
-            div.menu dt:before {
-                content: counters(depth,".")". ";
-                counter-increment: depth;
-                }
-            
-            span.h2
-            {
-              font-size: 120%;    
-            }
-            span.h3
-            {
-              font-size: 110%;
-            }
-        
-            p.footer
-            {
-              width: 80% ;
-              margin-left: 170px;
-              margin-bottom: 1em;
-              text-align: center;
-              font-family: sans-serif;
-              font-size: 60%;
-              color: black;
-              background-color: #AAAAFF;
-            }
-        
-            dl.final a {
-              text-decoration: none;
-              font-family: sans-serif;
-            }
+        div.menu dt:before {
+            content: counters(depth, ".") ". ";
+            counter-increment: depth;
+        }
+
+        span.h2 {
+            font-size: 120%;
+        }
+
+        span.h3 {
+            font-size: 110%;
+        }
+
+        p.footer {
+            width: 80%;
+            margin-left: 170px;
+            margin-bottom: 1em;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 60%;
+            color: black;
+            background-color: #AAAAFF;
+        }
+
+        dl.final a {
+            text-decoration: none;
+            font-family: sans-serif;
+        }
+
         /* ]]> */
-        </style>
+    </style>
 
- 
-        <title>PHP PrintIPP usage</title>
-    </head>
-    <body>
-        <h1>PHP PrintIPP usage</h1>
-        
-        <div class='menu'>
-        <h2>Summary</h2>
-        <dl>
-            <dt><span class="h2"><a href="#introduction">Introduction</a></span></dt>
-            <dt><span class="h2"><a href="#basicusage">Basic usage</a></span></dt>
-            <dt><span class="h2"><a href="#advancedusage">Advanced usage</a></span></dt>
-            <dt><span class="h2"><a href="#known-problems">Why do it doesn't work? Huh!</a></span></dt>
-            <dt><span class="h2"><a href="#variables">Public variables</a></span></dt>
+    <title>PHP PrintIPP usage</title>
+</head>
+<body>
+<h1>PHP PrintIPP usage</h1>
+
+<div class='menu'>
+    <h2>Summary</h2>
+    <dl>
+        <dt><span class="h2"><a href="#introduction">Introduction</a></span></dt>
+        <dt><span class="h2"><a href="#basicusage">Basic usage</a></span></dt>
+        <dt><span class="h2"><a href="#advancedusage">Advanced usage</a></span></dt>
+        <dt><span class="h2"><a href="#known-problems">Why do it doesn't work? Huh!</a></span></dt>
+        <dt><span class="h2"><a href="#variables">Public variables</a></span></dt>
+        <dd>
+            <dl>
+                <dt><span class="h3"><a href="#setupvar">setup public variables</a></span></dt>
                 <dd>
-                    <dl>
-                    <dt><span class="h3"><a href="#setupvar">setup public variables</a></span></dt>
-                    <dd>
-                        <dl class="final">
+                    <dl class="final">
                         <dt><a href='#s1'>$ssl</a></dt>
                         <dt><a href='#s2'>$paths</a></dt>
                         <dt><a href='#s3'>$http_timeout</a></dt>
@@ -191,11 +163,11 @@
                         <dt><a href='#s6'>$alert_on_end_tag</a></dt>
                         <dt><a href='#s7'>$with_exceptions</a></dt>
                         <dt><a href='#s8'>$handle_http_exceptions</a></dt>
-                        </dl>
-                    </dd>
-                    <dt><span class="h3"><a href="#readvar">readable public variables</a></span></dt>
-                    <dd>
-                        <dl class="final">
+                    </dl>
+                </dd>
+                <dt><span class="h3"><a href="#readvar">readable public variables</a></span></dt>
+                <dd>
+                    <dl class="final">
                         <dt><a href='#a1'>$jobs</a></dt>
                         <dt><a href='#a2'>$jobs_uri</a></dt>
                         <dt><a href='#a3'>$status</a></dt>
@@ -208,17 +180,17 @@
                         <dt><a href='#a10'>$printers_uri</a></dt>
                         <dt><a href='#a11'>$debug</a></dt>
                         <dt><a href='#a12'>$attributes</a></dt>
-                        </dl>
-                    </dd>
                     </dl>
                 </dd>
-            <dt><span class="h2"><a href="#responseparsing">Response parsing</a></span></dt>
-            <dt><span class="h2"><a href="#functionsreference">Functions reference</a></span></dt>
-                 <dd>
-                        <dl>
-                      <dt><span class="h3"><a href="#funcsetup">Setup</a></span></dt>
-                      <dd>
-                        <dl class="final">
+            </dl>
+        </dd>
+        <dt><span class="h2"><a href="#responseparsing">Response parsing</a></span></dt>
+        <dt><span class="h2"><a href="#functionsreference">Functions reference</a></span></dt>
+        <dd>
+            <dl>
+                <dt><span class="h3"><a href="#funcsetup">Setup</a></span></dt>
+                <dd>
+                    <dl class="final">
                         <dt><a href='#b1'>setPort($port='631')</a></dt>
                         <dt><a href='#b2'>setHost($host='localhost')</a></dt>
                         <dt><a href='#b25'>setUnix($socket='/var/run/cups/cups.sock')</a></dt>
@@ -244,11 +216,11 @@
                         <dt><a href='#b22'>setPageRanges($page_ranges)</a></dt>
                         <dt><a href='#b23'>setAttribute($attribute,$value)</a></dt>
                         <dt><a href='#b24'>unsetAttribute($attribute)</a></dt>
-                        </dl>
-                     </dd>
-                     <dt><span class="h3"><a href="#funcops">Operations</a></span></dt>
-                     <dd>
-                        <dl class="final">
+                    </dl>
+                </dd>
+                <dt><span class="h3"><a href="#funcops">Operations</a></span></dt>
+                <dd>
+                    <dl class="final">
                         <dt><a href='#c1'>printJob()</a></dt>
                         <dt><a href='#c2'>cancelJob($job_uri)</a></dt>
                         <dt><a href='#c3'>getPrinterAttributes()</a></dt>
@@ -267,56 +239,56 @@
                         <dt><a href='#c16'>restartJob($job_uri)</a></dt>
                         <dt><a href='#c17'>setJobAttributes($job_uri,array($deleted_attributes))</a></dt>
                         <dt><a href='#c18'>getPrinters()</a></dt>
-                        </dl>
-                    </dd>
-                    <dt><span class="h3"><a href="#funclog">Logging / Debugging</a></span></dt>
-                    <dd>
-                        <dl class="final">
+                    </dl>
+                </dd>
+                <dt><span class="h3"><a href="#funclog">Logging / Debugging</a></span></dt>
+                <dd>
+                    <dl class="final">
                         <dt><a href='#d1'>setLog($log_destination,$destination_type='file',$level=2)</a></dt>
                         <dt><a href='#d2'>printDebug()</a></dt>
                         <dt><a href='#d3'>getDebug()</a></dt>
-                        </dl>
-                    </dd>
                     </dl>
-                 </dd>
-            <dt><span class="h2"><a href="#exceptions">Exceptions</a></span></dt>
-              <dd>
-                <dl class="final">
-                  <dt><a href="#e1">httpException</a></dt>
-                </dl>
-                <dl class="final">
-                  <dt><a href="#e2">ippException</a></dt>
-                </dl>
-              </dd>
-            <dt><span class="h2"><a href="#attributes">writable attributes</a></span></dt>
-            <dt><span class="h2"><a href="#readable-attributes">readable attributes</a></span></dt>
-            <dt><span class="h2"><a href="#CupsPrintIPP-usage">Cups specific operations and parsing</a></span></dt>
-            <dt><span class="h2"><a href="#phpprintipp">phpprintipp command line tool</a></span></dt>
-            <dt><span class="h2">Distribution</span></dt>
-            <dd>  
-              <dl>
+                </dd>
+            </dl>
+        </dd>
+        <dt><span class="h2"><a href="#exceptions">Exceptions</a></span></dt>
+        <dd>
+            <dl class="final">
+                <dt><a href="#e1">httpException</a></dt>
+            </dl>
+            <dl class="final">
+                <dt><a href="#e2">ippException</a></dt>
+            </dl>
+        </dd>
+        <dt><span class="h2"><a href="#attributes">writable attributes</a></span></dt>
+        <dt><span class="h2"><a href="#readable-attributes">readable attributes</a></span></dt>
+        <dt><span class="h2"><a href="#CupsPrintIPP-usage">Cups specific operations and parsing</a></span></dt>
+        <dt><span class="h2"><a href="#phpprintipp">phpprintipp command line tool</a></span></dt>
+        <dt><span class="h2">Distribution</span></dt>
+        <dd>
+            <dl>
                 <dt><a href="#copyright">Copyright of this document</a></dt>
                 <dt><a href="#codelicense">Copyright of non trivial code examples</a></dt>
                 <dt><a href="#license">GNU Free Documentation License</a></dt>
                 <dt><a href="#license2">GNU General Public License</a></dt>
-              </dl>
-            </dd>
-        </dl>
-        </div>
-        
-        <div class="section" id="introduction">
-            <h2>Introduction</h2>
-            
-            <p>PHP PrintIPP is a PHP5 class library. It is designed to easier usage of Internet Printing Protocol.</p>
-            <p>It makes easy simple actions like print and cancel a document, and not difficult complex tasks
-                as print a text document on 2 pages per sheet, dual sided, with staples on center (provided your
-                printer and print server does).</p>
-        </div>
-        <div class="section" id="basicusage">
-            <h2>Basic usage</h2>
-            
-            <p>As we said, simple things are simple:</p>
-            <pre class="pre">
+            </dl>
+        </dd>
+    </dl>
+</div>
+
+<div class="section" id="introduction">
+    <h2>Introduction</h2>
+
+    <p>PHP PrintIPP is a PHP5 class library. It is designed to easier usage of Internet Printing Protocol.</p>
+    <p>It makes easy simple actions like print and cancel a document, and not difficult complex tasks
+        as print a text document on 2 pages per sheet, dual sided, with staples on center (provided your
+        printer and print server does).</p>
+</div>
+<div class="section" id="basicusage">
+    <h2>Basic usage</h2>
+
+    <p>As we said, simple things are simple:</p>
+    <pre class="pre">
                 &lt;?php
                 
                     require_once(PrintIPP.php);
@@ -331,8 +303,8 @@
 
                 ?&gt;
             </pre>
-            <p class="note">You can replace filename by a string.</p>
-            <pre class="pre">
+    <p class="note">You can replace filename by a string.</p>
+    <pre class="pre">
                  &lt;?php
                     
                     $ipp-&gt;setAuthentication("test","test"); // system username &amp; password, need to be lpadmin
@@ -343,12 +315,12 @@
 
                  ?&gt;
             </pre>
-        </div>
-        <div class="section" id="advancedusage">
-            <h2>A little more</h2>
-            
-            <p>Now, we making little more complex tasks:</p>
-            <pre class="pre">
+</div>
+<div class="section" id="advancedusage">
+    <h2>A little more</h2>
+
+    <p>Now, we making little more complex tasks:</p>
+    <pre class="pre">
 
                 &lt;?php
                 /* printing an utf-8 file, two-sided, two pages per sheet */   
@@ -382,7 +354,7 @@
                 ?&gt;
                 
             </pre>
-            <pre class="pre">
+    <pre class="pre">
 
                 &lt;?php
                 /* printing selected pages from document */   
@@ -407,7 +379,7 @@
                 ?&gt;
                  
             </pre>
-            <pre class="pre">
+    <pre class="pre">
                 &lt;?php
                 
                 /* printing strings as RAW TEXT, no form feed */
@@ -452,186 +424,187 @@
 
                 ?&gt;
             </pre>
-        </div>
-        <div class="section" id="known-problems">
-            <h2>Problems and solutions</h2>
-            <div class="subsection" >
-                <h3>My script fails with "_(): function unknown"</h3>
-                    <div class="subsubsection">
-                        <div>OK: you do not have gettext (gettext is an I-18n (internationalization)
-                        system).</div>
-                        <div>Solutions:
-                            <dl>
-                                <dt>Install gettext part of PHP</dt>
-                                <dd>The simpler one if you have your own server</dd>
-                                <dt>Create a fake gettext</dt>
-                                <dd>
-                                    in your code:
-                                    <pre>
+</div>
+<div class="section" id="known-problems">
+    <h2>Problems and solutions</h2>
+    <div class="subsection">
+        <h3>My script fails with "_(): function unknown"</h3>
+        <div class="subsubsection">
+            <div>OK: you do not have gettext (gettext is an I-18n (internationalization)
+                system).
+            </div>
+            <div>Solutions:
+                <dl>
+                    <dt>Install gettext part of PHP</dt>
+                    <dd>The simpler one if you have your own server</dd>
+                    <dt>Create a fake gettext</dt>
+                    <dd>
+                        in your code:
+                        <pre>
                                         if (!function_exists('_'))
                                            require_once ('gettext.php');
                                     </pre>
-                                    File gettext.php:
-                                    <pre>
+                        File gettext.php:
+                        <pre>
                                         &lt;?php
                                             function _($text) {
                                                 return $text;
                                             }
                                         &gt;
                                     </pre>
-                                    That's all!
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
+                        That's all!
+                    </dd>
+                </dl>
             </div>
         </div>
-        <div class="section" id="variables">
-            <h2>Public variables</h2>
-            <div class="subsection" id="setupvar">
-                <h3>Setup</h3>
-                    <div class="subsubsection">
-                        <h4><a id='s1'>$ssl</a></h4>
-                        Set it to 1 for tls connections between web server and IPP server.
-                        <p class="note">With CUPS1.1, you need to setup "SSLPort"
-                        in "cupsd.conf" on wanted port for secure connections</p>
-                    </div>    
-                    <div class="subsubsection">
-                        <h4><a id='s2'>$paths</a></h4>
-                        array<br />
-                        keys = root,admin,printers,jobs<br />
-                        Set paths to whatever needed for the operations. By default, CUPS
-                        server settings (values = "/","/admin/","/printers/","/jobs/").
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='s3'>$http_timeout</a></h4>
-                        timeout at http connection (seconds) 0 &rArr; default &rArr; 30.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='s4'>$http_data_timeout</a></h4>
-                        data reading timeout (milliseconds) 0 &rArr; default &rArr; 30.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='s5'>$debug_level</a></h4>
-                        0 to 4 (4 = quiet). Debugging purpose, set the
-                        amount of data you want for get/printDebug().
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='s6'>$alert_on_end_tag</a></h4>
-                        debugging purpose: echo "END tag OK" if (1 and  reads
-                        while end tag).  If you experience problems with
-                        incomplete responses from server, you can use it to
-                        setup $http_data_timeout.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='s7'>$with_exceptions</a></h4>
-                        Set it to true to activate exceptions (backward
-                        compatibility).
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='s8'>$handle_http_exceptions</a></h4>
-                        Set it to true to activate handling of
-                        http exceptions through ippException.
-                    </div>
-            </div>
-            <div class="subsection" id="readvar">
-                <h3>Readable public variables</h3>
-                    <div class="subsubsection">
-                        <h4><a id='a1'>$jobs</a></h4>
-                        array()<br />
-                        contains job ids from operations (filled with non null
-                        value if such a job is returned by server, eg. after
-                        "PrintJob()").
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a2'>$jobs_uri</a></h4>
-                        array()<br />
-                        contains job URIs from operations. What you must read
-                        if you want to cancel job or make other operations on
-                        it.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a3'>$status</a></h4>
-                        array()<br />
-                        exit status from each operation.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a4'>$response_completed</a></h4>
-                        array()<br />
-                        If you suspect incomplete responses from server,
-                        contains information about it ("no" or "complete" 
-                        for each operation).
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a5'>$last_job</a></h4>
-                        string<br />
-                        contains last job's URI. Useful for CancelJob().
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a6'>$printer_attributes</a></h4>
-                         object you can read: printer's attributes 
-                         after getPrinterAttributes().
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a7'>$job_attributes</a></h4>
-                        object you can read: 
-                        last job attributes.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a8'>$jobs_attributes</a></h4>
-                        object you can read: 
-                        jobs attributes after getJobs().
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a9'>$available_printers</a></h4>
-                        array<br />
-                        printers URIS after getPrinters() if such getPrinters
-                        operation is implemented for your vendor (Currently:
-                        CUPS).
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a10'>$printers_uri</a></h4>
-                        array<br />
-                        printers URIs for each job, if returned by server 
-                        (not with CUPS).
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a11'>$debug</a></h4>
-                        array<br />
-                        debugging information, 1 line per event logged.
-                    </div>
-                    <div class="subsubsection">
-                        <h4><a id='a12'>$attributes</a></h4>
-                        object you can read: attributes after any operation.
-                    </div>
-            </div>
+    </div>
+</div>
+<div class="section" id="variables">
+    <h2>Public variables</h2>
+    <div class="subsection" id="setupvar">
+        <h3>Setup</h3>
+        <div class="subsubsection">
+            <h4><a id='s1'>$ssl</a></h4>
+            Set it to 1 for tls connections between web server and IPP server.
+            <p class="note">With CUPS1.1, you need to setup "SSLPort"
+                in "cupsd.conf" on wanted port for secure connections</p>
         </div>
-        <div class="section" id="responseparsing">
-            <h2>Response parsing</h2>
-                <div class="subsection">
-                    <h3>Operation's status</h3>
-                    Returned by operations functions.<br />
-                    Can also be found in array $ipp-&gt;status (1 key by operation).
-                    <p class="note">Operations functions returns false in case of HTTP error,
-                    </p>
-                        
-                </div>
-                <div class="subsection">
-                    <h3>Job's uri</h3>
-                    Needed to CancelJob($job_uri).<br />
-                    Last job uri is in string $ipp-&gt;last_job<br />
-                    Can also be found in array $ipp-&gt;jobs_uri (1 key by operation);
-                </div>
-                <div class="subsection">
-                    <h3>Available printer's uris</h3>
-                    Found in array $ipp-&gt;available_printers, after a call to getPrinters().
-                    <p class="note">getPrinters() is not part of IPP standard, thus it is implemented in (NameOfVendor)PrintIPP.</p>
-                </div>
-                <div class="subsection">
-                    <h3>Printer's attributes</h3>
-                    After a call to getPrinterAttributes(), founds in $ipp-&gt;printer_attributes.<br />
-                    example:
-                    <pre class="pre">
+        <div class="subsubsection">
+            <h4><a id='s2'>$paths</a></h4>
+            array<br/>
+            keys = root,admin,printers,jobs<br/>
+            Set paths to whatever needed for the operations. By default, CUPS
+            server settings (values = "/","/admin/","/printers/","/jobs/").
+        </div>
+        <div class="subsubsection">
+            <h4><a id='s3'>$http_timeout</a></h4>
+            timeout at http connection (seconds) 0 &rArr; default &rArr; 30.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='s4'>$http_data_timeout</a></h4>
+            data reading timeout (milliseconds) 0 &rArr; default &rArr; 30.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='s5'>$debug_level</a></h4>
+            0 to 4 (4 = quiet). Debugging purpose, set the
+            amount of data you want for get/printDebug().
+        </div>
+        <div class="subsubsection">
+            <h4><a id='s6'>$alert_on_end_tag</a></h4>
+            debugging purpose: echo "END tag OK" if (1 and reads
+            while end tag). If you experience problems with
+            incomplete responses from server, you can use it to
+            setup $http_data_timeout.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='s7'>$with_exceptions</a></h4>
+            Set it to true to activate exceptions (backward
+            compatibility).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='s8'>$handle_http_exceptions</a></h4>
+            Set it to true to activate handling of
+            http exceptions through ippException.
+        </div>
+    </div>
+    <div class="subsection" id="readvar">
+        <h3>Readable public variables</h3>
+        <div class="subsubsection">
+            <h4><a id='a1'>$jobs</a></h4>
+            array()<br/>
+            contains job ids from operations (filled with non null
+            value if such a job is returned by server, eg. after
+            "PrintJob()").
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a2'>$jobs_uri</a></h4>
+            array()<br/>
+            contains job URIs from operations. What you must read
+            if you want to cancel job or make other operations on
+            it.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a3'>$status</a></h4>
+            array()<br/>
+            exit status from each operation.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a4'>$response_completed</a></h4>
+            array()<br/>
+            If you suspect incomplete responses from server,
+            contains information about it ("no" or "complete"
+            for each operation).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a5'>$last_job</a></h4>
+            string<br/>
+            contains last job's URI. Useful for CancelJob().
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a6'>$printer_attributes</a></h4>
+            object you can read: printer's attributes
+            after getPrinterAttributes().
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a7'>$job_attributes</a></h4>
+            object you can read:
+            last job attributes.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a8'>$jobs_attributes</a></h4>
+            object you can read:
+            jobs attributes after getJobs().
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a9'>$available_printers</a></h4>
+            array<br/>
+            printers URIS after getPrinters() if such getPrinters
+            operation is implemented for your vendor (Currently:
+            CUPS).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a10'>$printers_uri</a></h4>
+            array<br/>
+            printers URIs for each job, if returned by server
+            (not with CUPS).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a11'>$debug</a></h4>
+            array<br/>
+            debugging information, 1 line per event logged.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='a12'>$attributes</a></h4>
+            object you can read: attributes after any operation.
+        </div>
+    </div>
+</div>
+<div class="section" id="responseparsing">
+    <h2>Response parsing</h2>
+    <div class="subsection">
+        <h3>Operation's status</h3>
+        Returned by operations functions.<br/>
+        Can also be found in array $ipp-&gt;status (1 key by operation).
+        <p class="note">Operations functions returns false in case of HTTP error,
+        </p>
+
+    </div>
+    <div class="subsection">
+        <h3>Job's uri</h3>
+        Needed to CancelJob($job_uri).<br/>
+        Last job uri is in string $ipp-&gt;last_job<br/>
+        Can also be found in array $ipp-&gt;jobs_uri (1 key by operation);
+    </div>
+    <div class="subsection">
+        <h3>Available printer's uris</h3>
+        Found in array $ipp-&gt;available_printers, after a call to getPrinters().
+        <p class="note">getPrinters() is not part of IPP standard, thus it is implemented in (NameOfVendor)PrintIPP.</p>
+    </div>
+    <div class="subsection">
+        <h3>Printer's attributes</h3>
+        After a call to getPrinterAttributes(), founds in $ipp-&gt;printer_attributes.<br/>
+        example:
+        <pre class="pre">
                 &lt;?php
 
                     $ipp = new PrintIPP();
@@ -668,156 +641,156 @@
  
                 ?&gt;
                     </pre>
-                </div>
-                <div class="subsection">
-                    <h3>Job's attributes</h3>
-                    After a call to *Job() (except "validateJob"), founds in $ipp-&gt;job_attributes.<br />
-                    Parsing: same method than Printer's attributes. see <a href="#getJobAttributes"
-                    >getJobAttributes() operation</a>;
-                </div>    
-                <div class="subsection">
-                    <h3>Job's attributes</h3>
-                    After a call to getJobs(), founds in $ipp-&gt;jobs_attributes.<br />
-                    Parsing: same method than Printer's attributes, except that jobs <em>are</em> objects. 
-                    See "getJobs()" operation for an example.
-                </div>    
+    </div>
+    <div class="subsection">
+        <h3>Job's attributes</h3>
+        After a call to *Job() (except "validateJob"), founds in $ipp-&gt;job_attributes.<br/>
+        Parsing: same method than Printer's attributes. see <a href="#getJobAttributes"
+    >getJobAttributes() operation</a>;
+    </div>
+    <div class="subsection">
+        <h3>Job's attributes</h3>
+        After a call to getJobs(), founds in $ipp-&gt;jobs_attributes.<br/>
+        Parsing: same method than Printer's attributes, except that jobs <em>are</em> objects.
+        See "getJobs()" operation for an example.
+    </div>
 
+</div>
+<div class="section" id="functionsreference">
+    <h2>Functions reference</h2>
+    <div class="subsection" id="funcsetup">
+        <h3>Setup</h3>
+
+        <div class="subsubsection">
+            <h4><a id='b1'>setPort($port='631')</a></h4>
+            Select port which IPP server listen. By default port is set to IANA
+            assigned port (631).
         </div>
-        <div class="section" id="functionsreference">
-            <h2>Functions reference</h2>
-            <div class="subsection" id="funcsetup">
-            <h3>Setup</h3>
-            
-                <div class="subsubsection">
-                    <h4><a id='b1'>setPort($port='631')</a></h4>
-                    Select port which IPP server listen. By default port is set to IANA
-                    assigned port (631).
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b2'>setHost($host='localhost')</a></h4>
-                    Select host which is located IPP server (IP or resolvable hostname/FQDN).
-                    <span class='important'>(!  →  disable setUnix() ).</span>
-                    <span class='important'>Mandatory if you dont use UNIX sockets.</span>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b25'>setUnix($socket='/var/run/cups/cups.sock')</a></h4>
-                    Set UNIX socket name 
-                    <span class='important'>(! → disable setHost()).</span>
-                    <span class='important'>Mandatory if you don't use http/https.</span>
-                </div>
-                        
-                <div class="subsubsection">
-                    <h4><a id='b3'>setPrinterUri($uri)</a></h4>
-                    Select printer.
-                    <pre class="pre">
+        <div class="subsubsection">
+            <h4><a id='b2'>setHost($host='localhost')</a></h4>
+            Select host which is located IPP server (IP or resolvable hostname/FQDN).
+            <span class='important'>(!  →  disable setUnix() ).</span>
+            <span class='important'>Mandatory if you dont use UNIX sockets.</span>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b25'>setUnix($socket='/var/run/cups/cups.sock')</a></h4>
+            Set UNIX socket name
+            <span class='important'>(! → disable setHost()).</span>
+            <span class='important'>Mandatory if you don't use http/https.</span>
+        </div>
+
+        <div class="subsubsection">
+            <h4><a id='b3'>setPrinterUri($uri)</a></h4>
+            Select printer.
+            <pre class="pre">
                     /* examples */
                     
                     $ipp-&gt;setPrinterUri('/printers/epson');
                     $ipp-&gt;setPrinterUri('ipp://localhost:631/printers/epson')
                     </pre>
-                    <span class='important'>Mandatory, automatically done by <a href="CupsPrintIPP-usage.html">CupsPrintIPP</a> if not set.</span>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b4'>setData($data)</a></h4>
-                    string to be printed or file name of a <em>readable</em> file.
-                    <span class='important'>Mandatory for printing operations PrintJob() &amp; sendDocument().</span>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b5'>setRawText()</a></h4>
-                    Force data to be interpreted as raw text, and be sent directly to printer.
-                    It prepends a "SYN" and postpend a "Form Feed" characters to the data or file.
-                    <p class='note'>Can be used only on dot-matrix and ink-jet printers.</p>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b6'>unsetRawText()</a></h4>
-                    Unset previous operation (setRawText()).
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b7'>setBinary()</a></h4>
-                    Alias for unsetRawText().
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b8'>setFormFeed()</a></h4>
-                    When rawText is set, forces a form feed after printing.
-                    Automatically set at setRawText() call.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b9'>unsetFormFeed()</a></h4>
-                    Causes not form feed in RawText mode.
-                    <p class='note'>Must be called <em>after</em> each occurrence of setRawText.</p>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b10'>setCharset($charset)</a></h4>
-                    Set requests charset. Automatically set to "us-ascii" if not set.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b11'>setLanguage($language)</a></h4>
-                    Set requests natural language. Automatically set to "en_us" if not set.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b12'>setMimeMediaType($mime_media_type='application/octet-stream')</a></h4>
-                    Set type of document. By default: application/octet-stream &rArr; auto detection.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b13'>setCopies($nbrcopies=1)</a></h4>
-                    Set number of copies.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b14'>setDocumentName($document_name)</a></h4>
-                    Set document name (as for title page).
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b15'>setJobName($jobname='(PHP)',$absolute=false)</a></h4>
-                    Set job name. If $absolute is not 'true' (default), a count is automatically appended
-                    (MMDDHHMMSScount).
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b16'>setUserName($username='PHP-SERVER')</a></h4>
-                    Set user name as displayed on server and title pages. Automatically set to "PHP-SERVER" if not.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b17'>setAuthentication($username,$password)</a></h4>
-                    Set system user name and password when server needs authentication for operation.
-                    (e.g. cancelJob() on CUPS with standard settings).
-                    <p class="note">If the server do not support Basic nor Digest authentication, 
-                    you need to install SASL to use authentication. See INSTALL</p>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b18'>setSides($sides=2)</a></h4>
-                    Set sides on printed document.<br />
-                    Possibles values are:
-                    <dl>
-                        <dt>1: one-sided</dt>
-                        <dt>2: two-sided-long-edge</dt>
-                        <dt>2CE: two-sided-short-edge</dt>
-                    </dl>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b19'>setFidelity()</a></h4>
-                    If printer can't respect all attributes, do not print.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b20'>unsetFidelity()</a></h4>
-                    Print anyway (replace attributes as needed), after a call to setFidelity ().
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b21'>setMessage($message)</a></h4>
-                    Set message given to user, especially with CancelJob().
-                    <p class='note'>Cups does not reply this message</p>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b22'>setPageRanges($page_ranges)</a></h4>
-                    Set ranges of pages to be printed. $page_ranges&nbsp;==&nbsp;string,  
-                    e.g.:"&nbsp;1-2&nbsp;5-6&nbsp;8-14".<br />
-                    <p class="note">an empty string resets page-ranges.</p>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b23'>setAttribute($attribute,$value)</a></h4>
-                    For attributes which have not dedicated function. 
-                    $attribute and $value are the correspondent text strings in RFC2911.
-                    Returns false on failure.<br />
-                    Examples:
-                    <pre class ='pre'>
+            <span class='important'>Mandatory, automatically done by <a href="CupsPrintIPP-usage.html">CupsPrintIPP</a> if not set.</span>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b4'>setData($data)</a></h4>
+            string to be printed or file name of a <em>readable</em> file.
+            <span class='important'>Mandatory for printing operations PrintJob() &amp; sendDocument().</span>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b5'>setRawText()</a></h4>
+            Force data to be interpreted as raw text, and be sent directly to printer.
+            It prepends a "SYN" and postpend a "Form Feed" characters to the data or file.
+            <p class='note'>Can be used only on dot-matrix and ink-jet printers.</p>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b6'>unsetRawText()</a></h4>
+            Unset previous operation (setRawText()).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b7'>setBinary()</a></h4>
+            Alias for unsetRawText().
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b8'>setFormFeed()</a></h4>
+            When rawText is set, forces a form feed after printing.
+            Automatically set at setRawText() call.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b9'>unsetFormFeed()</a></h4>
+            Causes not form feed in RawText mode.
+            <p class='note'>Must be called <em>after</em> each occurrence of setRawText.</p>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b10'>setCharset($charset)</a></h4>
+            Set requests charset. Automatically set to "us-ascii" if not set.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b11'>setLanguage($language)</a></h4>
+            Set requests natural language. Automatically set to "en_us" if not set.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b12'>setMimeMediaType($mime_media_type='application/octet-stream')</a></h4>
+            Set type of document. By default: application/octet-stream &rArr; auto detection.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b13'>setCopies($nbrcopies=1)</a></h4>
+            Set number of copies.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b14'>setDocumentName($document_name)</a></h4>
+            Set document name (as for title page).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b15'>setJobName($jobname='(PHP)',$absolute=false)</a></h4>
+            Set job name. If $absolute is not 'true' (default), a count is automatically appended
+            (MMDDHHMMSScount).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b16'>setUserName($username='PHP-SERVER')</a></h4>
+            Set user name as displayed on server and title pages. Automatically set to "PHP-SERVER" if not.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b17'>setAuthentication($username,$password)</a></h4>
+            Set system user name and password when server needs authentication for operation.
+            (e.g. cancelJob() on CUPS with standard settings).
+            <p class="note">If the server do not support Basic nor Digest authentication,
+                you need to install SASL to use authentication. See INSTALL</p>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b18'>setSides($sides=2)</a></h4>
+            Set sides on printed document.<br/>
+            Possibles values are:
+            <dl>
+                <dt>1: one-sided</dt>
+                <dt>2: two-sided-long-edge</dt>
+                <dt>2CE: two-sided-short-edge</dt>
+            </dl>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b19'>setFidelity()</a></h4>
+            If printer can't respect all attributes, do not print.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b20'>unsetFidelity()</a></h4>
+            Print anyway (replace attributes as needed), after a call to setFidelity ().
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b21'>setMessage($message)</a></h4>
+            Set message given to user, especially with CancelJob().
+            <p class='note'>Cups does not reply this message</p>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b22'>setPageRanges($page_ranges)</a></h4>
+            Set ranges of pages to be printed. $page_ranges&nbsp;==&nbsp;string,
+            e.g.:"&nbsp;1-2&nbsp;5-6&nbsp;8-14".<br/>
+            <p class="note">an empty string resets page-ranges.</p>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b23'>setAttribute($attribute,$value)</a></h4>
+            For attributes which have not dedicated function.
+            $attribute and $value are the correspondent text strings in RFC2911.
+            Returns false on failure.<br/>
+            Examples:
+            <pre class='pre'>
                     
                     /* standard */
                     
@@ -838,37 +811,37 @@
                     $ipp-&gt;setAttribute("printer-resolution","320x200dpc");
                     
                     </pre>
-                    setAttributes takes care of attribute-type: you have to enter the text string,
-                    comprised 'enum' types.<br />
-                    Will add a separate page to list attributes and parameters, but for starting
-                    you cant get most of them by "getPrinterAttributes()" and "getJobAttributes()" :)
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='b24'>unsetAttribute($attribute)</a></h4>
-                    Unset given attribute for next jobs, for attributes which have not dedicated function.
-                </div>
-            </div>
-            <div class="subsection" id="funcops">    
-            <h3>Operations</h3>
-                <div class="subsubsection">
-                    <h4><a id='c1'>printJob()</a></h4>
-                    Print a single string or document, previously set by setdata($data).
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c2'>cancelJob($job_uri)</a></h4>
-                    cancel job which have uri $uri, as which is given in $ipp-&gt;last_job or in array
-                    $ipp-&gt;jobs_uri&nbsp;&rArr;&nbsp;(one key by operation).
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c3'>getPrinterAttributes()</a></h4>
-                    Get printer's attributes of printer set by setPrinterUri($uri), fill object $ipp-&gt;printer_attributes.
-                    see <a href="#responseparsing">response parsing</a>.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c4'>validateJob()</a></h4>
-                    Verify if the job can be printed with it's attributes before sending document.<br />
-                    Example:
-                    <pre class="pre">
+            setAttributes takes care of attribute-type: you have to enter the text string,
+            comprised 'enum' types.<br/>
+            Will add a separate page to list attributes and parameters, but for starting
+            you cant get most of them by "getPrinterAttributes()" and "getJobAttributes()" :)
+        </div>
+        <div class="subsubsection">
+            <h4><a id='b24'>unsetAttribute($attribute)</a></h4>
+            Unset given attribute for next jobs, for attributes which have not dedicated function.
+        </div>
+    </div>
+    <div class="subsection" id="funcops">
+        <h3>Operations</h3>
+        <div class="subsubsection">
+            <h4><a id='c1'>printJob()</a></h4>
+            Print a single string or document, previously set by setdata($data).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c2'>cancelJob($job_uri)</a></h4>
+            cancel job which have uri $uri, as which is given in $ipp-&gt;last_job or in array
+            $ipp-&gt;jobs_uri&nbsp;&rArr;&nbsp;(one key by operation).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c3'>getPrinterAttributes()</a></h4>
+            Get printer's attributes of printer set by setPrinterUri($uri), fill object $ipp-&gt;printer_attributes.
+            see <a href="#responseparsing">response parsing</a>.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c4'>validateJob()</a></h4>
+            Verify if the job can be printed with it's attributes before sending document.<br/>
+            Example:
+            <pre class="pre">
                     
                     &lt;?php
                     
@@ -890,15 +863,15 @@
                     document_format "application/x-foobar": unsupported attribute
                     
                     </pre>
-                </div>    
-                <div class="subsubsection" id="getJobAttributes">
-                    <h4><a id='c5'>getJobAttributes($job_uri,subset="false",$attributes_group="all")</a></h4>
-                    Get attributes from the job $job_uri. If (!$subset), gives $attributes_group="all" by default,
-                    or attributes_group = 'job-template' or 'job-description' if you fills third argument.
-                    if ($subset), gives only useful subset of attributes.
-                    <br />
-                    Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection" id="getJobAttributes">
+            <h4><a id='c5'>getJobAttributes($job_uri,subset="false",$attributes_group="all")</a></h4>
+            Get attributes from the job $job_uri. If (!$subset), gives $attributes_group="all" by default,
+            or attributes_group = 'job-template' or 'job-description' if you fills third argument.
+            if ($subset), gives only useful subset of attributes.
+            <br/>
+            Example:
+            <pre class="pre">
                     &lt;?php
                     
                     [...]
@@ -943,16 +916,16 @@
                                 )
                        [...]
                     </pre>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c6'>getJobs($my_jobs=true,$limit=0,$which_jobs="",$subset='true')</a></h4>
-                    get Jobs attributes, by default only your jobs, except if you set first argument to "false",
-                    by default with no limit, except if you gives an integer (0 &lt; x &lt; 65535) in second argument,
-                    by default not-completed, except if you gives 'completed' as third argument, by default only a 
-                    useful subset of attributes, except if you gives 'false' as fourth argument.
-                    <br />
-                    Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c6'>getJobs($my_jobs=true,$limit=0,$which_jobs="",$subset='true')</a></h4>
+            get Jobs attributes, by default only your jobs, except if you set first argument to "false",
+            by default with no limit, except if you gives an integer (0 &lt; x &lt; 65535) in second argument,
+            by default not-completed, except if you gives 'completed' as third argument, by default only a
+            useful subset of attributes, except if you gives 'false' as fourth argument.
+            <br/>
+            Example:
+            <pre class="pre">
                     &lt;?php
                     
                     echo "Getting Jobs: ".$ipp-&gt;getJobs($my_jobs=true,$limit=0,"completed",true)."&lt;br /&gt;";
@@ -1013,19 +986,19 @@
                                         [...]
                                     )
                     </pre>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c7'>printURI($uri)</a></h4>
-                    <p class="note">Implemented in ExtendedPrintIPP.</p>
-                    Print a single document, which uri is given in argument.
-                    <p class="note">Not implemented in Cups server (OPTIONAL operation).</p>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c8'>purgeJobs()</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP</p>
-                    Purge jobs for printer designed by setPrinterUri($uri), for all printers if $uri is "/printers/".<br />
-                    Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c7'>printURI($uri)</a></h4>
+            <p class="note">Implemented in ExtendedPrintIPP.</p>
+            Print a single document, which uri is given in argument.
+            <p class="note">Not implemented in Cups server (OPTIONAL operation).</p>
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c8'>purgeJobs()</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP</p>
+            Purge jobs for printer designed by setPrinterUri($uri), for all printers if $uri is "/printers/".<br/>
+            Example:
+            <pre class="pre">
                     
                     &lt;?php
                     
@@ -1044,20 +1017,20 @@
 
                     ?&gt;
                     </pre>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c9'>createJob()</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                    IPP Create-Job operation, before sending multi-documents with sendDocument($job);
-                    or sendURI($job,$uri). <br />
-                    See sendDocument example.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c10'>sendDocument($job_uri,$is_last=false)</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                    Send a document after a job has been created.<br />
-                     Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c9'>createJob()</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            IPP Create-Job operation, before sending multi-documents with sendDocument($job);
+            or sendURI($job,$uri). <br/>
+            See sendDocument example.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c10'>sendDocument($job_uri,$is_last=false)</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Send a document after a job has been created.<br/>
+            Example:
+            <pre class="pre">
                     &lt;?php
                     
                     function __autoload($class_name) {
@@ -1089,13 +1062,13 @@
 
                     ?&gt;
                     </pre>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c11'>sendURI($uri,$job_uri,$is_last=false)</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                    Send a document after a job has been created.<br />
-                     Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c11'>sendURI($uri,$job_uri,$is_last=false)</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Send a document after a job has been created.<br/>
+            Example:
+            <pre class="pre">
                     &lt;?php
                     
                     $uri = "http://localhost/";
@@ -1107,24 +1080,24 @@
 
                     ?&gt;
                     </pre>
-                </div>   
-                <div class="subsubsection">
-                    <h4><a id='c12'>pausePrinter()</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                     Pause printer setted by setPrinterURI($uri).
-                </div>   
-                <div class="subsubsection">
-                    <h4><a id='c13'>resumePrinter()</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                     resume (restart) printer set by setPrinterURI($uri).
-                </div>   
-                <div class="subsubsection">
-                    <h4><a id='c14'>holdJob($job_uri,$until='indefinite')</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                     Holds a job.<br />
-                     $until can be'no-hold','day-time','evening','night','weekend','second-shift','third-shift'.<br />
-                     Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c12'>pausePrinter()</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Pause printer setted by setPrinterURI($uri).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c13'>resumePrinter()</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            resume (restart) printer set by setPrinterURI($uri).
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c14'>holdJob($job_uri,$until='indefinite')</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Holds a job.<br/>
+            $until can be'no-hold','day-time','evening','night','weekend','second-shift','third-shift'.<br/>
+            Example:
+            <pre class="pre">
                     &lt;?php
                     
                     echo "printing document: " . $ipp-&gt;printJob("test"). "&lt;br /&gt;\n";
@@ -1141,18 +1114,18 @@
                      
                     ?&gt;
                     </pre>
-                </div>   
-                <div class="subsubsection">
-                    <h4><a id='c15'>releaseJob($job_uri)</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                    Release a pending or holded job.
-                </div>   
-                <div class="subsubsection">
-                    <h4><a id='c16'>restartJob($job_uri)</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                    Restarts a completed job.<br />
-                    Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c15'>releaseJob($job_uri)</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Release a pending or holded job.
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c16'>restartJob($job_uri)</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Restarts a completed job.<br/>
+            Example:
+            <pre class="pre">
                     &lt;?php
                     
                     echo "printing document: " . $ipp-&gt;printJob("test"). "&lt;br /&gt;\n";
@@ -1168,14 +1141,14 @@
                     
                     Will re-print the job in the week-end.
                     </pre>
-                </div>   
-                <div class="subsubsection">
-                    <h4><a id='c17'>setJobAttributes($job_uri,array($deleted_attributes))</a></h4>
-                    <p class="note">Function implemented in ExtendedPrintIPP.</p>
-                    Modify <em>an existing job's</em> attributes with values previously set by various setXXX operations.<br />
-                    Delete attributes which are in array of second argument.<br />
-                    Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c17'>setJobAttributes($job_uri,array($deleted_attributes))</a></h4>
+            <p class="note">Function implemented in ExtendedPrintIPP.</p>
+            Modify <em>an existing job's</em> attributes with values previously set by various setXXX operations.<br/>
+            Delete attributes which are in array of second argument.<br/>
+            Example:
+            <pre class="pre">
                         
                         /* setting copies to 2 */
                     
@@ -1190,13 +1163,13 @@
                     $ipp-&gt;setJobAttributes($ipp-&gt;last_job,$unset_attributes); 
                     
                     </pre>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='c18'>getPrinters()</a></h4>
-                    <p class="note">Function implemented in (NameOfVendor)PrintIPP.</p>
-                    Get availables printers, fill array $ipp-&gt;available_printers with printer's uris.<br />
-                    Example:
-                    <pre class="pre">
+        </div>
+        <div class="subsubsection">
+            <h4><a id='c18'>getPrinters()</a></h4>
+            <p class="note">Function implemented in (NameOfVendor)PrintIPP.</p>
+            Get availables printers, fill array $ipp-&gt;available_printers with printer's uris.<br/>
+            Example:
+            <pre class="pre">
                     
                     &lt;?php
                        
@@ -1215,112 +1188,114 @@
                     ?&gt;
                     
                     </pre>
-                </div>    
-            </div>
-            <div class="subsection" id="funclog">
-            <h3>Logging / debugging</h3>
-                <div class="subsubsection">
-                    <h4><a id='d1'>setLog($log_destination,$destination_type='file',$level=2)</a></h4>
-                    $destination_type can be "file", "logger", "e-mail".<br />
-                    $log_destination is a (new) writable file in a writable directory,
-                    or e-mail.<br />
-                    $level is <dl>
-                                <dt>0 &rArr; quiet;</dt>
-                                <dt>1 to 3 &rArr; less to more verbose.</dt>
-                              </dl>
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='d2'>printDebug()</a></h4>
-                    Display debugging information.<br />
-                    Verbosity set from 0 to 4 (=silent) in $ipp-&gt;debug_level.
-                </div>
-                <div class="subsubsection">
-                    <h4><a id='d3'>getDebug()</a></h4>
-                    Returns debugging information.<br />
-                    Verbosity set from 0 to 4 (=silent) in $ipp-&gt;debug_level.
-                </div>
-            </div>
         </div>
-        <div class="section" id="exceptions">                    
-        <h2>Exceptions</h2>
-          <div class="subsection" id="e1">
-          <h3>httpException</h3>
-              <dl>
-                <dt>public function getErrorFormatted()</dt>
-                <dt>public function getErrno()</dt>
-                <dt>public function getMessage()</dt>
-                <dt>public function getLine()</dt>
-                <dt>public function getFile()</dt>
-                <dt>public function getTrace()</dt>
-                <dt>public function getTraceAsString()</dt>
-              </dl>
-          </div>
-          <div class="subsection" id="e2">
-          <h3>ippException</h3>
-              <dl>
-                <dt>public function getErrorFormatted()</dt>
-                <dt>public function getErrno()</dt>
-                <dt>public function getMessage()</dt>
-                <dt>public function getLine()</dt>
-                <dt>public function getFile()</dt>
-                <dt>public function getTrace()</dt>
-                <dt>public function getTraceAsString()</dt>
-              </dl>
-          </div>
+    </div>
+    <div class="subsection" id="funclog">
+        <h3>Logging / debugging</h3>
+        <div class="subsubsection">
+            <h4><a id='d1'>setLog($log_destination,$destination_type='file',$level=2)</a></h4>
+            $destination_type can be "file", "logger", "e-mail".<br/>
+            $log_destination is a (new) writable file in a writable directory,
+            or e-mail.<br/>
+            $level is
+            <dl>
+                <dt>0 &rArr; quiet;</dt>
+                <dt>1 to 3 &rArr; less to more verbose.</dt>
+            </dl>
         </div>
-        <div class="section" id="attributes">
-        <h2>writable attributes</h2>
-            <p>See file <a href="attributes.html">attributes.html</a></p>
+        <div class="subsubsection">
+            <h4><a id='d2'>printDebug()</a></h4>
+            Display debugging information.<br/>
+            Verbosity set from 0 to 4 (=silent) in $ipp-&gt;debug_level.
         </div>
-        <div class="section" id="readable-attributes">
-        <h2>Readable attributes</h2>
-            <p>See file <a href="readable-attributes.html">readable-attributes.html</a></p>
+        <div class="subsubsection">
+            <h4><a id='d3'>getDebug()</a></h4>
+            Returns debugging information.<br/>
+            Verbosity set from 0 to 4 (=silent) in $ipp-&gt;debug_level.
         </div>
-        <div class="section" id="CupsPrintIPP-usage">
-        <h2>Cups specific operations and parsing</h2>
-            <p>See file <a href="CupsPrintIPP-usage.html">CupsPrintIPP-usage.html</a></p>
-        </div>
-        <div class="section" id="phpprintipp">
-        <h2>phpprintipp command line tool</h2>
-            <p>See file <a href="phpprintipp.html">phpprintipp.html</a></p>
-        </div>
-        <div class="section" id="copyright">
-            <h2>Copyright / Distribution of this document</h2>
-            <div class="subsection">
-            <h3>Copyright of this document</h3>
-                  <p>Copyright © 2005-2008  Thomas Harding.</p>
-                  <p>Due to non-<a href='http://www.debian.org/social_contract#guidelines'>DFSG</a> compliance of GFDL, this document is distributed under dual licence :</p>
-                  <ol>
-                    <li>The GNU Free Documentation License</li>
-                    <li>The GNU General Public License</li>
-                  </ol>
-                  <p class='typewriter'>
-                  Permission is granted to copy, distribute and/or modify this document
-                  under the terms of the GNU Free Documentation License, Version 1.2
-                  or any later version published by the Free Software Foundation;
-                  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
-                  Texts.  A copy of the license is included in the section entitled "GNU
-                  Free Documentation License".</p>
-                  <p class='typewriter'>
-                  These files are free software; you can redistribute them and/or modify
-                  them under the terms of the GNU General Public License as published by
-                  the Free Software Foundation; either version 2 of the License, or
-                  (at your option) any later version.
+    </div>
+</div>
+<div class="section" id="exceptions">
+    <h2>Exceptions</h2>
+    <div class="subsection" id="e1">
+        <h3>httpException</h3>
+        <dl>
+            <dt>public function getErrorFormatted()</dt>
+            <dt>public function getErrno()</dt>
+            <dt>public function getMessage()</dt>
+            <dt>public function getLine()</dt>
+            <dt>public function getFile()</dt>
+            <dt>public function getTrace()</dt>
+            <dt>public function getTraceAsString()</dt>
+        </dl>
+    </div>
+    <div class="subsection" id="e2">
+        <h3>ippException</h3>
+        <dl>
+            <dt>public function getErrorFormatted()</dt>
+            <dt>public function getErrno()</dt>
+            <dt>public function getMessage()</dt>
+            <dt>public function getLine()</dt>
+            <dt>public function getFile()</dt>
+            <dt>public function getTrace()</dt>
+            <dt>public function getTraceAsString()</dt>
+        </dl>
+    </div>
+</div>
+<div class="section" id="attributes">
+    <h2>writable attributes</h2>
+    <p>See file <a href="attributes.html">attributes.html</a></p>
+</div>
+<div class="section" id="readable-attributes">
+    <h2>Readable attributes</h2>
+    <p>See file <a href="readable-attributes.html">readable-attributes.html</a></p>
+</div>
+<div class="section" id="CupsPrintIPP-usage">
+    <h2>Cups specific operations and parsing</h2>
+    <p>See file <a href="CupsPrintIPP-usage.html">CupsPrintIPP-usage.html</a></p>
+</div>
+<div class="section" id="phpprintipp">
+    <h2>phpprintipp command line tool</h2>
+    <p>See file <a href="phpprintipp.html">phpprintipp.html</a></p>
+</div>
+<div class="section" id="copyright">
+    <h2>Copyright / Distribution of this document</h2>
+    <div class="subsection">
+        <h3>Copyright of this document</h3>
+        <p>Copyright © 2005-2008 Thomas Harding.</p>
+        <p>Due to non-<a href='http://www.debian.org/social_contract#guidelines'>DFSG</a> compliance of GFDL, this document is distributed under dual licence :
+        </p>
+        <ol>
+            <li>The GNU Free Documentation License</li>
+            <li>The GNU General Public License</li>
+        </ol>
+        <p class='typewriter'>
+            Permission is granted to copy, distribute and/or modify this document
+            under the terms of the GNU Free Documentation License, Version 1.2
+            or any later version published by the Free Software Foundation;
+            with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+            Texts. A copy of the license is included in the section entitled "GNU
+            Free Documentation License".</p>
+        <p class='typewriter'>
+            These files are free software; you can redistribute them and/or modify
+            them under the terms of the GNU General Public License as published by
+            the Free Software Foundation; either version 2 of the License, or
+            (at your option) any later version.
 
-                  This documentation is distributed in the hope that it will be useful,
-                  but WITHOUT ANY WARRANTY; without even the implied warranty of
-                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-                  GNU General Public License for more details.
+            This documentation is distributed in the hope that it will be useful,
+            but WITHOUT ANY WARRANTY; without even the implied warranty of
+            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+            GNU General Public License for more details.
 
-                  You should have received a copy of the GNU General Public License
-                  along with this documentation; if not, write to the Free Software
-                  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-                  </p>
-            </div>
-            <div class="subsection">
-            <h3 id='codelicense'>Copyright of non trivial code examples</h3>
-                  <p>Copyright © 2005-2006  Thomas Harding.</p>
-                  <pre class="pre">
+            You should have received a copy of the GNU General Public License
+            along with this documentation; if not, write to the Free Software
+            Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+        </p>
+    </div>
+    <div class="subsection">
+        <h3 id='codelicense'>Copyright of non trivial code examples</h3>
+        <p>Copyright © 2005-2006 Thomas Harding.</p>
+        <pre class="pre">
                     All rights reserved.
   
                     Redistribution and use in source and binary forms, with or without
@@ -1347,11 +1322,11 @@
                     LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
                     NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
                     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-                  </pre>            
-            </div>
-            <div class="subsection">
-            <h3 id="license">GNU Free Documentation License</h3>
-            <pre class="pre">
+                  </pre>
+    </div>
+    <div class="subsection">
+        <h3 id="license">GNU Free Documentation License</h3>
+        <pre class="pre">
                 GNU Free Documentation License
                   Version 1.2, November 2002
 
@@ -1750,10 +1725,10 @@ recommend releasing these examples in parallel under your choice of
 free software license, such as the GNU General Public License,
 to permit their use in free software.
             </pre>
-            </div>
-            <div class="subsection">
-            <h3 id="license2">GNU General Public License</h3>
-            <pre class="pre">
+    </div>
+    <div class="subsection">
+        <h3 id="license2">GNU General Public License</h3>
+        <pre class="pre">
                     GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
 
@@ -2095,14 +2070,14 @@ consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
             </pre>
-        </div>
-      </div>
-      <div>
-      <p class="footer">Copyright © 2005-2008 Thomas Harding.
-            <br />
-            Copying and distribution of this article can be made under General Public License.
-            see <a href="README">README</a> and <a href="COPYING">COPYING</a>.
-      </p>
-      </div>
-    </body>
+    </div>
+</div>
+<div>
+    <p class="footer">Copyright © 2005-2008 Thomas Harding.
+        <br/>
+        Copying and distribution of this article can be made under General Public License.
+        see <a href="README">README</a> and <a href="COPYING">COPYING</a>.
+    </p>
+</div>
+</body>
 </html>
