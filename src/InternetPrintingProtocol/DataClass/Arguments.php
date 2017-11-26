@@ -1,8 +1,8 @@
 <?php
 
-namespace InternetPrintingProtocol\Dataclass;
+namespace InternetPrintingProtocol\DataClass;
 
-class ArgumentHandler
+class Arguments
 {
     private $arguments;
 
@@ -11,7 +11,7 @@ class ArgumentHandler
         $this->arguments = $arguments;
     }
 
-    public static function create(array $arguments)
+    public static function create(array $arguments): Arguments
     {
         return new self($arguments);
     }

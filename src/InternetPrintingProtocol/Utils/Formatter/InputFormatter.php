@@ -2,18 +2,18 @@
 
 namespace InternetPrintingProtocol\Utils\Formatter;
 
-use InternetPrintingProtocol\DataClass\ArgumentHandler;
+use InternetPrintingProtocol\DataClass\Arguments;
 
 class InputFormatter
 {
-    public function format(array $arguments)
+    public function format(array $arguments): array
     {
-        $sortedarguments = [];
+        $sortedArguments = [];
 
-        $sortedarguments['command'] = $this->getCommandName($arguments);
-        $sortedarguments['argument'] = $this->sortArguments($arguments);
+        $sortedArguments['command'] = $this->getCommandName($arguments);
+        $sortedArguments['argument'] = $this->sortArguments($arguments);
 
-        return $sortedarguments;
+        return $sortedArguments;
     }
 
     private function getCommandName(array $arguments): string
@@ -33,7 +33,7 @@ class InputFormatter
         return $commandName;
     }
 
-    private function sortArguments(array $arguments): ArgumentHandler
+    private function sortArguments(array $arguments): Arguments
     {
         $sortedArguments = [];
 
@@ -48,7 +48,7 @@ class InputFormatter
             }
         }
 
-        return ArgumentHandler::create($sortedArguments);
+        return Arguments::create($sortedArguments);
     }
 
     private function validateArguments(string $argument = null)

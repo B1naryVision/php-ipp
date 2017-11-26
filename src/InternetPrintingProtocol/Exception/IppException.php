@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace InternetPrintingProtocol\Exception;
 
@@ -17,7 +17,7 @@ class IppException extends \Exception
 
     public function getErrorFormatted()
     {
-        $return = sprintf('[ipp]: %s -- ' . _(' file %s, line %s'),
+        $return = sprintf('[ipp]: %s -- '._(' file %s, line %s'),
             $this->getMessage(), $this->getFile(), $this->getLine());
 
         return $return;

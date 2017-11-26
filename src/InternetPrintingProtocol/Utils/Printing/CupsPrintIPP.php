@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace InternetPrintingProtocol\Utils;
 
@@ -95,7 +95,7 @@ class CupsPrintIPP extends ExtendedPrintIPP
             $prepend .= \chr(0);
         }
 
-        return $prepend . $value_built;
+        return $prepend.$value_built;
     }
 
     protected function _interpretEnum($attribute_name, $value)
@@ -155,30 +155,30 @@ class CupsPrintIPP extends ExtendedPrintIPP
         foreach ($attributes as $i => $iValue) {
             if ($i === 0) {
                 $this->meta->attributes = \chr(0x44) // Keyword
-                    . $this->_giveMeStringLength('requested-attributes')
-                    . 'requested-attributes'
-                    . $this->_giveMeStringLength($attributes[0])
-                    . $attributes[0];
+                    .$this->_giveMeStringLength('requested-attributes')
+                    .'requested-attributes'
+                    .$this->_giveMeStringLength($attributes[0])
+                    .$attributes[0];
             } else {
                 $this->meta->attributes .= \chr(0x44) // Keyword
-                    . \chr(0x0) . \chr(0x0) // zero-length name
-                    . $this->_giveMeStringLength($attributes[$i])
-                    . $iValue;
+                    .\chr(0x0).\chr(0x0) // zero-length name
+                    .$this->_giveMeStringLength($attributes[$i])
+                    .$iValue;
             }
         }
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // IPP version 1.1
-            . \chr(0x40) . \chr(0x01) // operation:  cups vendor extension: get defaults
-            . $this->meta->operation_id // request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->attributes
-            . \chr(0x03); // end operations attribute
+        $this->stringjob = \chr(0x01).\chr(0x01) // IPP version 1.1
+            .\chr(0x40).\chr(0x01) // operation:  cups vendor extension: get defaults
+            .$this->meta->operation_id // request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->attributes
+            .\chr(0x03); // end operations attribute
 
         $this->output = $this->stringjob;
 
-        $this->_putDebug('Request: ' . $this->output);
+        $this->_putDebug('Request: '.$this->output);
 
         $post_values = [
             'Content-Type' => 'application/ipp',
@@ -196,7 +196,7 @@ class CupsPrintIPP extends ExtendedPrintIPP
             $table = $this->_interpretPrinterType($printer_type);
 
             foreach ($table as $i => $iValue) {
-                $index = '_value' . $i;
+                $index = '_value'.$i;
                 $this->printer_attributes->printer_type->$index = $iValue;
             }
         }
@@ -204,9 +204,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         if (isset($this->serveroutput, $this->serveroutput->status)) {
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog('getting defaults: ' . $this->serveroutput->status, 3);
+                $this->_errorLog('getting defaults: '.$this->serveroutput->status, 3);
             } else {
-                $this->_errorLog('getting defaults: ' . $this->serveroutput->status, 1);
+                $this->_errorLog('getting defaults: '.$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -350,22 +350,22 @@ class CupsPrintIPP extends ExtendedPrintIPP
 
         $this->_setOperationId();
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // IPP version 1.1
-            . \chr(0x40) . \chr(0x08) // operation:  cups vendor extension: Accept-Jobs
-            . $this->meta->operation_id // request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . \chr(0x45) // uri
-            . $this->_giveMeStringLength('printer-uri')
-            . 'printer-uri'
-            . $this->_giveMeStringLength($printer_uri)
-            . $printer_uri
-            . \chr(0x03); // end operations attribute
+        $this->stringjob = \chr(0x01).\chr(0x01) // IPP version 1.1
+            .\chr(0x40).\chr(0x08) // operation:  cups vendor extension: Accept-Jobs
+            .$this->meta->operation_id // request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .\chr(0x45) // uri
+            .$this->_giveMeStringLength('printer-uri')
+            .'printer-uri'
+            .$this->_giveMeStringLength($printer_uri)
+            .$printer_uri
+            .\chr(0x03); // end operations attribute
 
         $this->output = $this->stringjob;
 
-        $this->_putDebug('Request: ' . $this->output);
+        $this->_putDebug('Request: '.$this->output);
 
         $post_values = [
             'Content-Type' => 'application/ipp',
@@ -379,9 +379,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         if (isset($this->serveroutput, $this->serveroutput->status)) {
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog('getting defaults: ' . $this->serveroutput->status, 3);
+                $this->_errorLog('getting defaults: '.$this->serveroutput->status, 3);
             } else {
-                $this->_errorLog('getting defaults: ' . $this->serveroutput->status, 1);
+                $this->_errorLog('getting defaults: '.$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -415,30 +415,30 @@ class CupsPrintIPP extends ExtendedPrintIPP
         $message = '';
         if ($printer_state_message) {
             $message = \chr(0x04) // start printer-attributes
-                . \chr(0x41) // textWithoutLanguage
-                . $this->_giveMeStringLength('printer-state-message')
-                . 'printer-state-message'
-                . $this->_giveMeStringLength($printer_state_message)
-                . $printer_state_message;
+                .\chr(0x41) // textWithoutLanguage
+                .$this->_giveMeStringLength('printer-state-message')
+                .'printer-state-message'
+                .$this->_giveMeStringLength($printer_state_message)
+                .$printer_state_message;
         }
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // IPP version 1.1
-            . \chr(0x40) . \chr(0x09) // operation:  cups vendor extension: Reject-Jobs
-            . $this->meta->operation_id // request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . \chr(0x45) // uri
-            . $this->_giveMeStringLength('printer-uri')
-            . 'printer-uri'
-            . $this->_giveMeStringLength($printer_uri)
-            . $printer_uri
-            . $message
-            . \chr(0x03); // end operations attribute
+        $this->stringjob = \chr(0x01).\chr(0x01) // IPP version 1.1
+            .\chr(0x40).\chr(0x09) // operation:  cups vendor extension: Reject-Jobs
+            .$this->meta->operation_id // request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .\chr(0x45) // uri
+            .$this->_giveMeStringLength('printer-uri')
+            .'printer-uri'
+            .$this->_giveMeStringLength($printer_uri)
+            .$printer_uri
+            .$message
+            .\chr(0x03); // end operations attribute
 
         $this->output = $this->stringjob;
 
-        $this->_putDebug('Request: ' . $this->output);
+        $this->_putDebug('Request: '.$this->output);
 
         $post_values = [
             'Content-Type' => 'application/ipp',
@@ -452,9 +452,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         if (isset($this->serveroutput, $this->serveroutput->status)) {
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog('getting defaults: ' . $this->serveroutput->status, 3);
+                $this->_errorLog('getting defaults: '.$this->serveroutput->status, 3);
             } else {
-                $this->_errorLog('getting defaults: ' . $this->serveroutput->status, 1);
+                $this->_errorLog('getting defaults: '.$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -508,43 +508,43 @@ class CupsPrintIPP extends ExtendedPrintIPP
 
         if ($printer_location) {
             $this->meta->attributes .= \chr(0x41) // textWithoutLanguage
-                . $this->_giveMeStringLength('printer-location')
-                . 'printer-location'
-                . $this->_giveMeStringLength($printer_location)
-                . $printer_location;
+                .$this->_giveMeStringLength('printer-location')
+                .'printer-location'
+                .$this->_giveMeStringLength($printer_location)
+                .$printer_location;
         }
 
         if ($printer_info) {
             $this->meta->attributes .= \chr(0x41) // textWithoutLanguage
-                . $this->_giveMeStringLength('printer-info')
-                . 'printer-info'
-                . $this->_giveMeStringLength($printer_info)
-                . $printer_info;
+                .$this->_giveMeStringLength('printer-info')
+                .'printer-info'
+                .$this->_giveMeStringLength($printer_info)
+                .$printer_info;
         }
 
         foreach ($attributes as $i => $iValue) {
             if ($i === 0) {
                 $this->meta->attributes .= \chr(0x44) // Keyword
-                    . $this->_giveMeStringLength('requested-attributes')
-                    . 'requested-attributes'
-                    . $this->_giveMeStringLength($attributes[0])
-                    . $attributes[0];
+                    .$this->_giveMeStringLength('requested-attributes')
+                    .'requested-attributes'
+                    .$this->_giveMeStringLength($attributes[0])
+                    .$attributes[0];
             } else {
                 $this->meta->attributes .= \chr(0x44) // Keyword
-                    . \chr(0x0) . \chr(0x0) // zero-length name
-                    . $this->_giveMeStringLength($attributes[$i])
-                    . $iValue;
+                    .\chr(0x0).\chr(0x0) // zero-length name
+                    .$this->_giveMeStringLength($attributes[$i])
+                    .$iValue;
             }
         }
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // IPP version 1.1
-            . \chr(0x40) . \chr(0x02) // operation:  cups vendor extension: get printers
-            . $this->meta->operation_id //           request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->attributes
-            . \chr(0x03); // end operations attribute
+        $this->stringjob = \chr(0x01).\chr(0x01) // IPP version 1.1
+            .\chr(0x40).\chr(0x02) // operation:  cups vendor extension: get printers
+            .$this->meta->operation_id //           request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->attributes
+            .\chr(0x03); // end operations attribute
 
         $this->output = $this->stringjob;
 
@@ -560,9 +560,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         if (isset($this->serveroutput, $this->serveroutput->status)) {
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog('getting printers: ' . $this->serveroutput->status, 3);
+                $this->_errorLog('getting printers: '.$this->serveroutput->status, 3);
             } else {
-                $this->_errorLog('getting printers: ' . $this->serveroutput->status, 1);
+                $this->_errorLog('getting printers: '.$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -583,7 +583,7 @@ class CupsPrintIPP extends ExtendedPrintIPP
 
         for ($i = 0; array_key_exists($i, $this->serveroutput->response); ++$i) {
             if ($this->serveroutput->response[$i]['attributes'] === 'printer-attributes') {
-                $phpname = '_printer' . $k;
+                $phpname = '_printer'.$k;
                 $this->printers_attributes->$phpname = new \stdClass();
                 for ($j = 0; array_key_exists($j, $this->serveroutput->response[$i]); ++$j) {
                     $value = $this->serveroutput->response[$i][$j]['value'];
@@ -598,7 +598,7 @@ class CupsPrintIPP extends ExtendedPrintIPP
                             $this->printers_attributes->$phpname->$name = new \stdClass();
 
                             foreach ($table as $l => $lValue) {
-                                $index = '_value' . $l;
+                                $index = '_value'.$l;
                                 $this->printers_attributes->$phpname->$name->$index = $lValue;
                             }
 
@@ -634,7 +634,7 @@ class CupsPrintIPP extends ExtendedPrintIPP
             $table = $this->_interpretPrinterType($printer_type);
 
             foreach ($table as $i => $iValue) {
-                $index = '_value' . $i;
+                $index = '_value'.$i;
                 $this->printer_attributes->printer_type->$index = $iValue;
             }
         }

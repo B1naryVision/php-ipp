@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 
 namespace InternetPrintingProtocol\Utils\Printing;
 
@@ -65,11 +65,11 @@ class PrintIPP extends BasicIPP
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
 
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog(sprintf('printing job %s: ', $this->last_job) . $this->serveroutput->status, 3);
+                $this->_errorLog(sprintf('printing job %s: ', $this->last_job).$this->serveroutput->status, 3);
             } else {
                 $this->jobs = array_merge($this->jobs, ['']);
                 $this->jobs_uri = array_merge($this->jobs_uri, ['']);
-                $this->_errorLog(sprintf('printing job: %s', $this->last_job) . $this->serveroutput->status, 1);
+                $this->_errorLog(sprintf('printing job: %s', $this->last_job).$this->serveroutput->status, 1);
                 if ($this->with_exceptions) {
                     throw new IppException(sprintf('job status: %s',
                         $this->serveroutput->status));
@@ -165,7 +165,7 @@ class PrintIPP extends BasicIPP
             $this->job_attributes->$php_name->_range = $range;
             for ($j = 0; $j < (\count($this->parsed[$i]) - 3); ++$j) {
                 $value = $this->parsed[$i][$j];
-                $index = '_value' . $j;
+                $index = '_value'.$j;
                 $this->job_attributes->$php_name->$index = $value;
             }
         }
@@ -202,9 +202,9 @@ class PrintIPP extends BasicIPP
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
 
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog("cancelling job $job_uri: " . $this->serveroutput->status, 3);
+                $this->_errorLog("cancelling job $job_uri: ".$this->serveroutput->status, 3);
             } else {
-                $this->_errorLog("cancelling job $job_uri: " . $this->serveroutput->status, 1);
+                $this->_errorLog("cancelling job $job_uri: ".$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -242,17 +242,17 @@ class PrintIPP extends BasicIPP
             $this->error_generation->request_body_malformed = '';
         }
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
-            . \chr(0x00) . \chr(0x08) // cancel-Job | operation-id
-            . $this->meta->operation_id //           request-id
-            . $this->error_generation->request_body_malformed
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->job_uri
-            . $this->meta->username
-            . $this->meta->message
-            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
+            .\chr(0x00).\chr(0x08) // cancel-Job | operation-id
+            .$this->meta->operation_id //           request-id
+            .$this->error_generation->request_body_malformed
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->job_uri
+            .$this->meta->username
+            .$this->meta->message
+            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -263,19 +263,19 @@ class PrintIPP extends BasicIPP
     {
         ++$this->operation_id;
         $this->meta->operation_id = $this->_integerBuild($this->operation_id);
-        $this->_putDebug('operation id is: ' . $this->operation_id . "\n", 2);
+        $this->_putDebug('operation id is: '.$this->operation_id."\n", 2);
     }
 
     protected function _setJobUri($job_uri)
     {
         $this->meta->job_uri = \chr(0x45) // type uri
-            . \chr(0x00) . \chr(0x07) // name-length
-            . 'job-uri'
+            .\chr(0x00).\chr(0x07) // name-length
+            .'job-uri'
             //. chr(0x00).chr(strlen($job_uri))
-            . $this->_giveMeStringLength($job_uri)
-            . $job_uri;
+            .$this->_giveMeStringLength($job_uri)
+            .$job_uri;
 
-        $this->_putDebug('job-uri is: ' . $job_uri . "\n", 2);
+        $this->_putDebug('job-uri is: '.$job_uri."\n", 2);
     }
 
     protected function _parseResponse()
@@ -308,7 +308,7 @@ class PrintIPP extends BasicIPP
                 case 0x03:
                     ++$j;
                     $this->serveroutput->response[$j]['attributes'] = 'end-of-attributes';
-                    $this->_putDebug('tag is: ' . $this->serveroutput->response[$j]['attributes'] . "\n");
+                    $this->_putDebug('tag is: '.$this->serveroutput->response[$j]['attributes']."\n");
                     if ($this->alert_on_end_tag === 1) {
                         echo 'END tag OK<br />';
                     }
@@ -336,7 +336,7 @@ class PrintIPP extends BasicIPP
                     break;
             }
 
-            $this->_putDebug('tag is: ' . $this->serveroutput->response[$j]['attributes'] . "\n\n\n");
+            $this->_putDebug('tag is: '.$this->serveroutput->response[$j]['attributes']."\n\n\n");
         }
 
         return;
@@ -541,7 +541,7 @@ class PrintIPP extends BasicIPP
             + \ord($this->serveroutput->body[$this->_parsing->offset + 1]);
         $this->_parsing->offset += 2;
 
-        $this->_putDebug('name_length ' . $name_length . "\n");
+        $this->_putDebug('name_length '.$name_length."\n");
 
         $name = '';
         for ($i = 0; $i < $name_length; ++$i) {
@@ -556,7 +556,7 @@ class PrintIPP extends BasicIPP
             $this->serveroutput->response[$attributes_type][$j]['name'] = $name;
         }
 
-        $this->_putDebug('name ' . $name . "\n");
+        $this->_putDebug('name '.$name."\n");
 
         return $name;
     }
@@ -566,11 +566,11 @@ class PrintIPP extends BasicIPP
         $value_length = \ord($this->serveroutput->body[$this->_parsing->offset]) * 256
             + \ord($this->serveroutput->body[$this->_parsing->offset + 1]);
 
-        $this->_putDebug('value_length ' . $this->serveroutput->body[$this->_parsing->offset]
-            . $this->serveroutput->body[$this->_parsing->offset + 1]
-            . ': '
-            . $value_length
-            . ' ');
+        $this->_putDebug('value_length '.$this->serveroutput->body[$this->_parsing->offset]
+            .$this->serveroutput->body[$this->_parsing->offset + 1]
+            .': '
+            .$value_length
+            .' ');
 
         $this->_parsing->offset += 2;
 
@@ -599,7 +599,7 @@ class PrintIPP extends BasicIPP
 
         $this->_parsing->offset += 2;
 
-        $this->_putDebug('Collection name_length ' . $name_length . "\n");
+        $this->_putDebug('Collection name_length '.$name_length."\n");
 
         $name = '';
         for ($i = 0; $i < $name_length; ++$i) {
@@ -616,7 +616,7 @@ class PrintIPP extends BasicIPP
             + \ord($this->serveroutput->body[$this->_parsing->offset + 1]);
         $this->_parsing->offset += 2;
 
-        $this->_putDebug('Attribute name_length ' . $name_length . "\n");
+        $this->_putDebug('Attribute name_length '.$name_length."\n");
 
         $name = '';
         for ($i = 0; $i < $name_length; ++$i) {
@@ -636,7 +636,7 @@ class PrintIPP extends BasicIPP
         }
         $this->last_attribute_name = $attribute_name;
 
-        $this->_putDebug('Attribute name ' . $name . "\n");
+        $this->_putDebug('Attribute name '.$name."\n");
 
         $tag = $this->_readTag(\ord($this->serveroutput->body[$this->_parsing->offset]));
         ++$this->_parsing->offset;
@@ -647,7 +647,7 @@ class PrintIPP extends BasicIPP
             + \ord($this->serveroutput->body[$this->_parsing->offset + 1]);
         $this->_parsing->offset += 2;
 
-        $this->_putDebug('Collection2 name_length ' . $name_length . "\n");
+        $this->_putDebug('Collection2 name_length '.$name_length."\n");
 
         $name = '';
         for ($i = 0; $i < $name_length; ++$i) {
@@ -662,11 +662,11 @@ class PrintIPP extends BasicIPP
         $value_length = \ord($this->serveroutput->body[$this->_parsing->offset]) * 256
             + \ord($this->serveroutput->body[$this->_parsing->offset + 1]);
 
-        $this->_putDebug('Collection value_length ' . $this->serveroutput->body[$this->_parsing->offset]
-            . $this->serveroutput->body[$this->_parsing->offset + 1]
-            . ': '
-            . $value_length
-            . ' ');
+        $this->_putDebug('Collection value_length '.$this->serveroutput->body[$this->_parsing->offset]
+            .$this->serveroutput->body[$this->_parsing->offset + 1]
+            .': '
+            .$value_length
+            .' ');
 
         $this->_parsing->offset += 2;
 
@@ -681,16 +681,16 @@ class PrintIPP extends BasicIPP
 
         $object = &$this->collection;
         for ($i = 0; $i <= $this->collection_depth; ++$i) {
-            $indice = '_indice' . $this->collection_nbr[$i];
+            $indice = '_indice'.$this->collection_nbr[$i];
             if (!isset($object->$indice)) {
                 $object->$indice = (object) 'indice';
             }
             $object = &$object->$indice;
         }
 
-        $value_key = '_value' . $this->collection_key[$this->collection_depth];
-        $col_name_key = '_collection_name' . $this->collection_key[$this->collection_depth];
-        $col_val_key = '_collection_value' . $this->collection_key[$this->collection_depth];
+        $value_key = '_value'.$this->collection_key[$this->collection_depth];
+        $col_name_key = '_collection_name'.$this->collection_key[$this->collection_depth];
+        $col_val_key = '_collection_value'.$this->collection_key[$this->collection_depth];
 
         $attribute_value = $this->_interpretAttribute($attribute_name, $tag, $value);
         $attribute_name = str_replace('-', '_', $attribute_name);
@@ -738,7 +738,7 @@ class PrintIPP extends BasicIPP
                         $unit = 'dpc';
                         break;
                 }
-                $value = $value . ' ' . $unit;
+                $value = $value.' '.$unit;
                 break;
             default:
                 break;
@@ -1170,25 +1170,25 @@ class PrintIPP extends BasicIPP
 
         $this->_setOperationId();
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
-            . \chr(0x00) . \chr(0x04) // Validate-Job | operation-id
-            . $this->meta->operation_id //           request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->printer_uri
-            . $this->meta->username
-            . $this->meta->jobname
-            . $this->meta->fidelity
-            . $this->meta->document_name
-            . $this->meta->mime_media_type
-            . $operationattributes
-            . \chr(0x02) // start job-attributes | job-attributes-tag
-            . $this->meta->copies
-            . $this->meta->sides
-            . $this->meta->page_ranges
-            . $jobattributes
-            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
+            .\chr(0x00).\chr(0x04) // Validate-Job | operation-id
+            .$this->meta->operation_id //           request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->printer_uri
+            .$this->meta->username
+            .$this->meta->jobname
+            .$this->meta->fidelity
+            .$this->meta->document_name
+            .$this->meta->mime_media_type
+            .$operationattributes
+            .\chr(0x02) // start job-attributes | job-attributes-tag
+            .$this->meta->copies
+            .$this->meta->sides
+            .$this->meta->page_ranges
+            .$jobattributes
+            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1207,9 +1207,9 @@ class PrintIPP extends BasicIPP
             $this->status = array_merge($this->status, [$this->serveroutput->status]);
 
             if ($this->serveroutput->status === 'successful-ok') {
-                $this->_errorLog('validate job: ' . $this->serveroutput->status, 3);
+                $this->_errorLog('validate job: '.$this->serveroutput->status, 3);
             } else {
-                $this->_errorLog('validate job: ' . $this->serveroutput->status, 1);
+                $this->_errorLog('validate job: '.$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1260,7 +1260,7 @@ class PrintIPP extends BasicIPP
             $this->attributes->$php_name->_range = $range;
             for ($j = 0; $j < (\count($this->parsed[$i]) - 3); ++$j) {
                 $value = $this->parsed[$i][$j];
-                $index = '_value' . $j;
+                $index = '_value'.$j;
                 $this->attributes->$php_name->$index = $value;
             }
         }
@@ -1307,16 +1307,16 @@ class PrintIPP extends BasicIPP
             $this->setUserName();
         }
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
-            . \chr(0x00) . \chr(0x0b) // Print-URI | operation-id
-            . $this->meta->operation_id //           request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->printer_uri
-            . $this->meta->username
-            . $printerattributes
-            . \chr(0x03); // end-of-attributes | end-of-attributes-tag
+        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
+            .\chr(0x00).\chr(0x0b) // Print-URI | operation-id
+            .$this->meta->operation_id //           request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->printer_uri
+            .$this->meta->username
+            .$printerattributes
+            .\chr(0x03); // end-of-attributes | end-of-attributes-tag
 
         $this->_putDebug(sprintf(_("String sent to the server is:\n%s\n"), $this->stringjob));
 
@@ -1351,8 +1351,8 @@ class PrintIPP extends BasicIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            . basename($_SERVER['PHP_SELF'])
-            . sprintf(_("getting printer's attributes of %s : OPERATION FAILED"),
+            .basename($_SERVER['PHP_SELF'])
+            .sprintf(_("getting printer's attributes of %s : OPERATION FAILED"),
                 $this->printer_uri), 3);
 
         return false;
@@ -1393,7 +1393,7 @@ class PrintIPP extends BasicIPP
             $this->printer_attributes->$php_name->_range = $range;
             for ($j = 0; $j < (\count($this->parsed[$i]) - 3); ++$j) {
                 $value = $this->parsed[$i][$j];
-                $index = '_value' . $j;
+                $index = '_value'.$j;
                 $this->printer_attributes->$php_name->$index = $value;
             }
         }
@@ -1440,10 +1440,10 @@ class PrintIPP extends BasicIPP
         if ($limit) {
             $limit = $this->_integerBuild($limit);
             $this->meta->limit = \chr(0x21) // integer
-                . $this->_giveMeStringLength('limit')
-                . 'limit'
-                . $this->_giveMeStringLength($limit)
-                . $limit;
+                .$this->_giveMeStringLength('limit')
+                .'limit'
+                .$this->_giveMeStringLength($limit)
+                .$limit;
         } else {
             $this->meta->limit = '';
         }
@@ -1451,61 +1451,61 @@ class PrintIPP extends BasicIPP
         $this->meta->which_jobs = '';
         if ($which_jobs === 'completed') {
             $this->meta->which_jobs = \chr(0x44) // keyword
-                . $this->_giveMeStringLength('which-jobs')
-                . 'which-jobs'
-                . $this->_giveMeStringLength($which_jobs)
-                . $which_jobs;
+                .$this->_giveMeStringLength('which-jobs')
+                .'which-jobs'
+                .$this->_giveMeStringLength($which_jobs)
+                .$which_jobs;
         }
 
         $this->meta->my_jobs = '';
         if ($my_jobs) {
             $this->meta->my_jobs = \chr(0x22) // boolean
-                . $this->_giveMeStringLength('my-jobs')
-                . 'my-jobs'
-                . $this->_giveMeStringLength(\chr(0x01))
-                . \chr(0x01);
+                .$this->_giveMeStringLength('my-jobs')
+                .'my-jobs'
+                .$this->_giveMeStringLength(\chr(0x01))
+                .\chr(0x01);
         }
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
-            . \chr(0x00) . \chr(0x0A) // Get-Jobs | operation-id
-            . $this->meta->operation_id //           request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->printer_uri
-            . $this->meta->username
-            . $this->meta->limit
-            . $this->meta->which_jobs
-            . $this->meta->my_jobs;
+        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
+            .\chr(0x00).\chr(0x0A) // Get-Jobs | operation-id
+            .$this->meta->operation_id //           request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->printer_uri
+            .$this->meta->username
+            .$this->meta->limit
+            .$this->meta->which_jobs
+            .$this->meta->my_jobs;
         if ($subset) {
             $this->stringjob .=
                 \chr(0x44) // keyword
-                . $this->_giveMeStringLength('requested-attributes')
-                . 'requested-attributes'
-                . $this->_giveMeStringLength('job-uri')
-                . 'job-uri'
-                . \chr(0x44) // keyword
-                . $this->_giveMeStringLength('')
-                . ''
-                . $this->_giveMeStringLength('job-name')
-                . 'job-name'
-                . \chr(0x44) // keyword
-                . $this->_giveMeStringLength('')
-                . ''
-                . $this->_giveMeStringLength('job-state')
-                . 'job-state'
-                . \chr(0x44) // keyword
-                . $this->_giveMeStringLength('')
-                . ''
-                . $this->_giveMeStringLength('job-state-reason')
-                . 'job-state-reason';
+                .$this->_giveMeStringLength('requested-attributes')
+                .'requested-attributes'
+                .$this->_giveMeStringLength('job-uri')
+                .'job-uri'
+                .\chr(0x44) // keyword
+                .$this->_giveMeStringLength('')
+                .''
+                .$this->_giveMeStringLength('job-name')
+                .'job-name'
+                .\chr(0x44) // keyword
+                .$this->_giveMeStringLength('')
+                .''
+                .$this->_giveMeStringLength('job-state')
+                .'job-state'
+                .\chr(0x44) // keyword
+                .$this->_giveMeStringLength('')
+                .''
+                .$this->_giveMeStringLength('job-state-reason')
+                .'job-state-reason';
         } else { // cups 1.4.4 doesn't return much of anything without this
             $this->stringjob .=
                 \chr(0x44) // keyword
-                . $this->_giveMeStringLength('requested-attributes')
-                . 'requested-attributes'
-                . $this->_giveMeStringLength('all')
-                . 'all';
+                .$this->_giveMeStringLength('requested-attributes')
+                .'requested-attributes'
+                .$this->_giveMeStringLength('all')
+                .'all';
         }
         $this->stringjob .= \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
@@ -1531,10 +1531,10 @@ class PrintIPP extends BasicIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('getting jobs of printer %s: '), $this->printer_uri)
-                    . $this->serveroutput->status, 3);
+                    .$this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('getting jobs of printer %s: '), $this->printer_uri)
-                    . $this->serveroutput->status, 1);
+                    .$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1542,8 +1542,8 @@ class PrintIPP extends BasicIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            . basename($_SERVER['PHP_SELF'])
-            . sprintf(_('getting jobs of %s : OPERATION FAILED'),
+            .basename($_SERVER['PHP_SELF'])
+            .sprintf(_('getting jobs of %s : OPERATION FAILED'),
                 $this->printer_uri), 3);
 
         return false;
@@ -1579,7 +1579,7 @@ class PrintIPP extends BasicIPP
         $this->serveroutput->response = [];
         $this->jobs_attributes = new \stdClass();
         foreach ($this->parsed as $job_nbr => $job_nbrValue) {
-            $job_index = 'job_' . $job_nbr;
+            $job_index = 'job_'.$job_nbr;
             $this->jobs_attributes->$job_index = new \stdClass();
             foreach ($this->parsed[$job_nbr] as $i => $iValue) {
                 $name = $this->parsed[$job_nbr][$i]['name'];
@@ -1595,7 +1595,7 @@ class PrintIPP extends BasicIPP
                     // bpkroth
                     //$value = self::_interpretAttribute($name,$type,$this->parsed[$job_nbr][$i][$j]);
                     $value = $this->parsed[$job_nbr][$i][$j];
-                    $index = '_value' . $j;
+                    $index = '_value'.$j;
                     $this->jobs_attributes->$job_index->$php_name->$index = $value;
                 }
             }
@@ -1647,41 +1647,41 @@ class PrintIPP extends BasicIPP
         }
 
         $this->meta->job_uri = \chr(0x45) // URI
-            . $this->_giveMeStringLength('job-uri')
-            . 'job-uri'
-            . $this->_giveMeStringLength($job_uri)
-            . $job_uri;
+            .$this->_giveMeStringLength('job-uri')
+            .'job-uri'
+            .$this->_giveMeStringLength($job_uri)
+            .$job_uri;
 
-        $this->stringjob = \chr(0x01) . \chr(0x01) // 1.1  | version-number
-            . \chr(0x00) . \chr(0x09) // Get-Job-Attributes | operation-id
-            . $this->meta->operation_id //           request-id
-            . \chr(0x01) // start operation-attributes | operation-attributes-tag
-            . $this->meta->charset
-            . $this->meta->language
-            . $this->meta->job_uri
-            . $this->meta->username;
+        $this->stringjob = \chr(0x01).\chr(0x01) // 1.1  | version-number
+            .\chr(0x00).\chr(0x09) // Get-Job-Attributes | operation-id
+            .$this->meta->operation_id //           request-id
+            .\chr(0x01) // start operation-attributes | operation-attributes-tag
+            .$this->meta->charset
+            .$this->meta->language
+            .$this->meta->job_uri
+            .$this->meta->username;
         if ($subset) {
             $this->stringjob .=
                 \chr(0x44) // keyword
-                . $this->_giveMeStringLength('requested-attributes')
-                . 'requested-attributes'
-                . $this->_giveMeStringLength('job-uri')
-                . 'job-uri'
-                . \chr(0x44) // keyword
-                . $this->_giveMeStringLength('')
-                . ''
-                . $this->_giveMeStringLength('job-name')
-                . 'job-name'
-                . \chr(0x44) // keyword
-                . $this->_giveMeStringLength('')
-                . ''
-                . $this->_giveMeStringLength('job-state')
-                . 'job-state'
-                . \chr(0x44) // keyword
-                . $this->_giveMeStringLength('')
-                . ''
-                . $this->_giveMeStringLength('job-state-reason')
-                . 'job-state-reason';
+                .$this->_giveMeStringLength('requested-attributes')
+                .'requested-attributes'
+                .$this->_giveMeStringLength('job-uri')
+                .'job-uri'
+                .\chr(0x44) // keyword
+                .$this->_giveMeStringLength('')
+                .''
+                .$this->_giveMeStringLength('job-name')
+                .'job-name'
+                .\chr(0x44) // keyword
+                .$this->_giveMeStringLength('')
+                .''
+                .$this->_giveMeStringLength('job-state')
+                .'job-state'
+                .\chr(0x44) // keyword
+                .$this->_giveMeStringLength('')
+                .''
+                .$this->_giveMeStringLength('job-state-reason')
+                .'job-state-reason';
         } elseif ($attributes_group) {
             switch ($attributes_group) {
                 case 'job-template':
@@ -1691,16 +1691,16 @@ class PrintIPP extends BasicIPP
                 case 'all':
                     break;
                 default:
-                    trigger_error(_('not a valid attribute group: ') . $attributes_group);
+                    trigger_error(_('not a valid attribute group: ').$attributes_group);
                     $attributes_group = '';
                     break;
             }
             $this->stringjob .=
                 \chr(0x44) // keyword
-                . $this->_giveMeStringLength('requested-attributes')
-                . 'requested-attributes'
-                . $this->_giveMeStringLength($attributes_group)
-                . $attributes_group;
+                .$this->_giveMeStringLength('requested-attributes')
+                .'requested-attributes'
+                .$this->_giveMeStringLength($attributes_group)
+                .$attributes_group;
         }
         $this->stringjob .= \chr(0x03); // end-of-attributes | end-of-attributes-tag
 
@@ -1726,10 +1726,10 @@ class PrintIPP extends BasicIPP
 
             if ($this->serveroutput->status === 'successful-ok') {
                 $this->_errorLog(sprintf(_('getting job attributes for %s: '), $job_uri)
-                    . $this->serveroutput->status, 3);
+                    .$this->serveroutput->status, 3);
             } else {
                 $this->_errorLog(sprintf(_('getting job attributes for %s: '), $job_uri)
-                    . $this->serveroutput->status, 1);
+                    .$this->serveroutput->status, 1);
             }
 
             return $this->serveroutput->status;
@@ -1737,8 +1737,8 @@ class PrintIPP extends BasicIPP
 
         $this->status = array_merge($this->status, ['OPERATION FAILED']);
         $this->_errorLog(date('Y-m-d H:i:s : ')
-            . basename($_SERVER['PHP_SELF'])
-            . sprintf(_('getting jobs attributes of %s : OPERATION FAILED'),
+            .basename($_SERVER['PHP_SELF'])
+            .sprintf(_('getting jobs attributes of %s : OPERATION FAILED'),
                 $job_uri), 3);
 
         return false;

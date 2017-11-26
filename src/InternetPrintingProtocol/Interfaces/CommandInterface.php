@@ -2,11 +2,24 @@
 
 namespace InternetPrintingProtocol\Interfaces;
 
-use Monolog\Logger;
-
 interface CommandInterface
 {
-    public static function create(array $inputs);
+    /**
+     * @return bool True = Successful, False = Failed
+     */
+    public function execute(): bool;
 
-    public function execute(Logger $logger);
+    /**
+     * Example of wanted Details:.
+     *
+     * PHP_IPP = [
+     *     'name' => 'Print',
+     *     'description' => 'Prints a document',
+     *     'arguments' => [
+     *         'printer' => 'printer-name',
+     *         'filePath' => 'path/to/file',
+     *     ],
+     * ]
+     */
+    public function getCommandDetails(): array;
 }
